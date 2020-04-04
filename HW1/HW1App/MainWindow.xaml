@@ -22,7 +22,7 @@
             <GroupBox.Header>
                 <TextBlock FontWeight="Bold">book details</TextBlock>
             </GroupBox.Header>
-            <Grid>
+            <Grid Name="gBookDetails">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -103,7 +103,7 @@
             </Grid.RowDefinitions>
 
             <Label Content="Books:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <ListBox Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="5,0,0,0"/>
+            <ListBox Name="lbBooks" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="5,0,0,0"/>
         </Grid>
         <!-- Add books sections -->
         <Grid Grid.Row="1" Grid.Column="1">

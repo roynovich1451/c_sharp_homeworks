@@ -54,8 +54,7 @@ namespace HW1wpfApp
                 throw new ArgumentException("Argument of Equals must be of type Author");
             }
             return this.FirstName.Equals(other.FirstName) &&
-                this.LastName.Equals(other.LastName) &&
-                this.Published.Equals(other.Published);
+                this.LastName.Equals(other.LastName);
         }
         #endregion
     }

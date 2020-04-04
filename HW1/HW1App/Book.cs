@@ -4,10 +4,10 @@ using System.Text;
 
 namespace HW1wpfApp
 {
-    class Book
+    class Book: IComparable
     {
         private string isbn;
-        private string Name { get; set; }
+        public string Name { get; set; }
         private Author auth;
         private int copies;
         private decimal price;
@@ -20,7 +20,7 @@ namespace HW1wpfApp
             }
             set
             {
-                if (!int.TryParse(value, out int temp))
+                if (!isNumber(value))
                 {
                     throw new WrongIsbnException("ISBN must contains only numbers");
                 }
@@ -95,12 +95,36 @@ namespace HW1wpfApp
         }
         public override string ToString()
         {
-            return Isbn + ", " + Name + ", " + Auth + ", copies:" + Copies + ", price:" + Price;
+            return Name + ", " + Isbn;
         }
         public override int GetHashCode()
         {
             return int.Parse(Isbn);
         }
         #endregion
+
+        private bool isNumber(string str)
+        {
+            foreach(char c in str)
+            {
+                if(c < '0' || c > '9')
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public int CompareTo(object obj)
+        {
+            Book b = obj as Book;
+            if (b == null)
+            {
+                throw new ArgumentException("compareTo must get argument of type Book");
+            }
+            else
+            {
+                return this.Name.CompareTo(b.Name);
+            }
+        }
     }
 }
