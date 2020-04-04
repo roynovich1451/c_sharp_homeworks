@@ -7,4 +7,10 @@
     <ApplicationIcon>bookIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="HW1">
+      <HintPath>..\HW1class\bin\Debug\netcoreapp3.1\HW1.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

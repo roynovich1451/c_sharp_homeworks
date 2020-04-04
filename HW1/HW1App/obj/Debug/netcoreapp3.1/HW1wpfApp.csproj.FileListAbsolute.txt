@@ -17,3 +17,10 @@ D:\Program Files (x86)\Microsoft Visual Studio\2019\Workspace\c#\HW1wpfApp\obj\D
 D:\Program Files (x86)\Microsoft Visual Studio\2019\Workspace\c#\HW1wpfApp\obj\Debug\netcoreapp3.1\HW1wpfApp.dll
 D:\Program Files (x86)\Microsoft Visual Studio\2019\Workspace\c#\HW1wpfApp\obj\Debug\netcoreapp3.1\HW1wpfApp.pdb
 D:\Program Files (x86)\Microsoft Visual Studio\2019\Workspace\c#\HW1wpfApp\obj\Debug\netcoreapp3.1\HW1wpfApp.genruntimeconfig.cache
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1App\obj\Debug\netcoreapp3.1\HW1wpfApp.csprojAssemblyReference.cache
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1App\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1App\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1App\obj\Debug\netcoreapp3.1\HW1wpfApp_MarkupCompile.cache
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1App\obj\Debug\netcoreapp3.1\HW1wpfApp_MarkupCompile.lref
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1App\obj\Debug\netcoreapp3.1\HW1wpfApp.dll
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1App\obj\Debug\netcoreapp3.1\HW1wpfApp.pdb

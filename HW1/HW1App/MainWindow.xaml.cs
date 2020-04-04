@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace HW1wpfApp
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace HW1wpfApp
 
         private void btnUpPr_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
     }
 }

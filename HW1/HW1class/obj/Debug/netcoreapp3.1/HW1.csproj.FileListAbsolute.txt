@@ -11,3 +11,9 @@ D:\Program Files (x86)\Microsoft Visual Studio\2019\Workspace\c#\HW1\obj\Debug\n
 D:\Program Files (x86)\Microsoft Visual Studio\2019\Workspace\c#\HW1\obj\Debug\netcoreapp3.1\HW1.dll
 D:\Program Files (x86)\Microsoft Visual Studio\2019\Workspace\c#\HW1\obj\Debug\netcoreapp3.1\HW1.pdb
 D:\Program Files (x86)\Microsoft Visual Studio\2019\Workspace\c#\HW1\obj\Debug\netcoreapp3.1\HW1.genruntimeconfig.cache
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1class\obj\Debug\netcoreapp3.1\HW1.csprojAssemblyReference.cache
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1class\obj\Debug\netcoreapp3.1\HW1.csproj.CoreCompileInputs.cache
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1class\obj\Debug\netcoreapp3.1\HW1.AssemblyInfoInputs.cache
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1class\obj\Debug\netcoreapp3.1\HW1.AssemblyInfo.cs
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1class\obj\Debug\netcoreapp3.1\HW1.dll
+C:\Users\royno\Desktop\C_Sharp\HW1\HW1class\obj\Debug\netcoreapp3.1\HW1.pdb
