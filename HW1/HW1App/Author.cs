@@ -6,8 +6,8 @@ namespace HW1wpfApp
 {
     class Author
     {
-        private string FirstName { get; set; }
-        private string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         private int published;
 
         #region properties

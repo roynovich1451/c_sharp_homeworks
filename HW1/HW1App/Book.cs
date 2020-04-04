@@ -8,7 +8,8 @@ namespace HW1wpfApp
     {
         private string isbn;
         public string Name { get; set; }
-        private Author auth;
+        /*TODO: change Author into reference...*/
+        private  Author auth;
         private int copies;
         private decimal price;
         #region properties

@@ -39,6 +39,7 @@ namespace HW1wpfApp
             {
                 MessageBox.Show("You must fill all textboxes under Book details", "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             try
             {
@@ -69,32 +70,74 @@ namespace HW1wpfApp
             catch (WrongIsbnException wie)
             {
                 MessageBox.Show(wie.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             catch (ArgumentException ae)
             {
                 MessageBox.Show(ae.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
         }
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
-
+            /*TODO: will learn after holiday*/ 
         }
 
         private void btnUpAm_Click(object sender, RoutedEventArgs e)
         {
-
+            if (lbBooks.SelectedItem == null)
+            {
+                MessageBox.Show("You must select a Book to change number of copies", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            Book book2change = lbBooks.SelectedItem as Book;
+            if (!int.TryParse(tbNOC.Text, out int tmp) || string.IsNullOrEmpty(tbNOC.Text))
+            {
+                MessageBox.Show("You must give natural number at 'copies' textbox","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                return;
+            }
+            Books[Books.IndexOf(book2change)].Copies = tmp;
         }
 
         private void btnUpPr_Click(object sender, RoutedEventArgs e)
         {
-           
+            try
+            {
+                if (lbBooks.SelectedItem == null)
+                {
+                    MessageBox.Show("You must select a Book to change his price", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                Book book2change = lbBooks.SelectedItem as Book;
+                if (!decimal.TryParse(tbPrice.Text, out decimal tmp) || string.IsNullOrEmpty(tbPrice.Text))
+                {
+                    throw new ArgumentException("You must give natural number at 'copies' textbox");
+                }
+                if (book2change.Price < tmp)
+                {
+                    throw new ArgumentException("Book's new Price can only be lower then his old one");
+                }
+                Books[Books.IndexOf(book2change)].Price = tmp;
+            }
+            catch(ArgumentException ae)
+            {
+                MessageBox.Show(ae.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
         }
         #endregion
+        #region side_Functions
         private bool allTextBoxFilled(Panel p)
         {
             foreach (var item in p.Children)
@@ -109,6 +152,17 @@ namespace HW1wpfApp
                 }
             }
             return true;
+        }
+        #endregion
+
+        private void lbBooks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Book selected = lbBooks.SelectedItem as Book;
+            Author auth = selected.Auth as Author;
+            tbDisAuthor.Text = auth.FirstName + " " + auth.LastName;
+            tbDisAuthorBooks.Text = auth.Published.ToString();
+            tbDisCopies.Text = selected.Copies.ToString();
+            tbDisPrice.Text = selected.Price.ToString();
         }
     }
 }
