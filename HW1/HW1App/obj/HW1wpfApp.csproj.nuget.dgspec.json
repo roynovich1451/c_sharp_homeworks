@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Workspace\\c#\\HW1wpfApp\\HW1wpfApp.csproj": {}
+    "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1\\HW1App\\HW1wpfApp.csproj": {}
   },
   "projects": {
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Workspace\\c#\\HW1wpfApp\\HW1wpfApp.csproj": {
+    "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1\\HW1App\\HW1wpfApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Workspace\\c#\\HW1wpfApp\\HW1wpfApp.csproj",
+        "projectUniqueName": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1\\HW1App\\HW1wpfApp.csproj",
         "projectName": "HW1wpfApp",
-        "projectPath": "D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Workspace\\c#\\HW1wpfApp\\HW1wpfApp.csproj",
+        "projectPath": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1\\HW1App\\HW1wpfApp.csproj",
         "packagesPath": "C:\\Users\\royno\\.nuget\\packages\\",
-        "outputPath": "D:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Workspace\\c#\\HW1wpfApp\\obj\\",
+        "outputPath": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1\\HW1App\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\royno\\AppData\\Roaming\\NuGet\\NuGet.Config",
