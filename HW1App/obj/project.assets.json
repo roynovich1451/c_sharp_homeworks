@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1\\HW1App\\HW1wpfApp.csproj",
+      "projectUniqueName": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1App\\HW1wpfApp.csproj",
       "projectName": "HW1wpfApp",
-      "projectPath": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1\\HW1App\\HW1wpfApp.csproj",
+      "projectPath": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1App\\HW1wpfApp.csproj",
       "packagesPath": "C:\\Users\\royno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1\\HW1App\\obj\\",
+      "outputPath": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1App\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\royno\\AppData\\Roaming\\NuGet\\NuGet.Config",
