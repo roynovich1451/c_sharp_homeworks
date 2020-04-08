@@ -67,7 +67,7 @@ namespace HW1wpfApp
                      * Books - new ObservableCollection<Book>(Books.OrderBy(i => i.CompareTo()));
                      */
                 }
-                rtbHistory.AppendText("Added "+ b.Name, "Green");
+                rtbHistory.AppendText("Added " + b.Name, "Green");
                 clearBooksTextBoxes(gBookDetails);
             }
             catch (WrongIsbnException wie)
@@ -77,19 +77,19 @@ namespace HW1wpfApp
             }
             catch (ArgumentException ae)
             {
-                MessageBox.Show(ae.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ae.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
         }
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
-            /*TODO: will learn after holiday*/ 
+            /*TODO: will learn after holiday*/
         }
 
         private void btnUpAm_Click(object sender, RoutedEventArgs e)
@@ -102,14 +102,14 @@ namespace HW1wpfApp
             Book book2change = lbBooks.SelectedItem as Book;
             if (!int.TryParse(tbNOC.Text, out int tmp) || string.IsNullOrEmpty(tbNOC.Text))
             {
-                MessageBox.Show("You must give natural number at 'copies' textbox","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("You must give natural number at 'copies' textbox", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             int value = int.Parse(tbNOC.Text);
             int oldAmount = Books[Books.IndexOf(book2change)].Copies;
             Books[Books.IndexOf(book2change)].Copies = value;
             tbDisCopies.Text = tbNOC.Text;
-            rtbHistory.AppendText("change amount of  " + book2change.Name + " from " +oldAmount+ " to "+ tbNOC.Text, "Blue");
+            rtbHistory.AppendText("change amount of  " + book2change.Name + " from " + oldAmount + " to " + tbNOC.Text, "Blue");
         }
 
         private void btnUpPr_Click(object sender, RoutedEventArgs e)
@@ -137,12 +137,12 @@ namespace HW1wpfApp
             }
             catch (ArgumentException ae)
             {
-                MessageBox.Show(ae.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ae.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
         }
@@ -155,7 +155,7 @@ namespace HW1wpfApp
                 if (item is TextBox)
                 {
                     TextBox tb = item as TextBox;
-                    if(tb.IsEnabled == true && string.IsNullOrEmpty(tb.Text))
+                    if (tb.IsEnabled == true && string.IsNullOrEmpty(tb.Text))
                     {
                         return false;
                     }
