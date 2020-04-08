@@ -46,15 +46,17 @@ namespace HW1wpfApp
             {
                 Author a = new Author(tbAFN.Text, tbALN.Text, 1);
                 int index = Authors.IndexOf(a);
+                Book b;
                 if (index != NOTFOUND)
                 {
                     Authors[index].Published += 1;
+                    b = new Book(tbIsbn.Text, tbTitle.Text, Authors[index], int.Parse(tbNOC.Text), decimal.Parse(tbPrice.Text));
                 }
                 else
                 {
                     Authors.Add(a);
+                    b = new Book(tbIsbn.Text, tbTitle.Text, a, int.Parse(tbNOC.Text), decimal.Parse(tbPrice.Text));
                 }
-                Book b = new Book(tbIsbn.Text, tbTitle.Text, a, int.Parse(tbNOC.Text), decimal.Parse(tbPrice.Text));
                 if (Books.Contains(b))
                 {
                     throw new IsbnInUseException("The book ISBN, " + b.Isbn + ", is in use at library");
