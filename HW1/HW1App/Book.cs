@@ -8,7 +8,6 @@ namespace HW1wpfApp
     {
         private string isbn;
         public string Name { get; set; }
-        /*TODO: change Author into reference...*/
         private  Author auth;
         private int copies;
         private decimal price;
@@ -40,7 +39,7 @@ namespace HW1wpfApp
             }
             set
             {
-                auth = value.Clone();
+                auth = value;
             }
         }
         public int Copies
@@ -97,10 +96,6 @@ namespace HW1wpfApp
         public override string ToString()
         {
             return Name + ", " + Isbn;
-        }
-        public override int GetHashCode()
-        {
-            return int.Parse(Isbn);
         }
         #endregion
 

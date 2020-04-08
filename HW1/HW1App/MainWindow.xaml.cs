@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CustomExtensions;
 
 
 namespace HW1wpfApp
@@ -44,6 +45,15 @@ namespace HW1wpfApp
             try
             {
                 Author a = new Author(tbAFN.Text, tbALN.Text, 1);
+                int index = Authors.IndexOf(a);
+                if (index != NOTFOUND)
+                {
+                    Authors[index].Published += 1;
+                }
+                else
+                {
+                    Authors.Add(a);
+                }
                 Book b = new Book(tbIsbn.Text, tbTitle.Text, a, int.Parse(tbNOC.Text), decimal.Parse(tbPrice.Text));
                 if (Books.Contains(b))
                 {
@@ -57,15 +67,8 @@ namespace HW1wpfApp
                      * Books - new ObservableCollection<Book>(Books.OrderBy(i => i.CompareTo()));
                      */
                 }
-                int index = Authors.IndexOf(a);
-                if (index != NOTFOUND)
-                {
-                    Authors[index].Published += 1;
-                } else
-                {
-                    Authors.Add(a);
-                }
-            
+                rtbHistory.AppendText("Added "+ b.Name, "Green");
+                clearBooksTextBoxes(gBookDetails);
             }
             catch (WrongIsbnException wie)
             {
@@ -102,7 +105,11 @@ namespace HW1wpfApp
                 MessageBox.Show("You must give natural number at 'copies' textbox","Error",MessageBoxButton.OK,MessageBoxImage.Error);
                 return;
             }
-            Books[Books.IndexOf(book2change)].Copies = tmp;
+            int value = int.Parse(tbNOC.Text);
+            int oldAmount = Books[Books.IndexOf(book2change)].Copies;
+            Books[Books.IndexOf(book2change)].Copies = value;
+            tbDisCopies.Text = tbNOC.Text;
+            rtbHistory.AppendText("change amount of  " + book2change.Name + " from " +oldAmount+ " to "+ tbNOC.Text, "Blue");
         }
 
         private void btnUpPr_Click(object sender, RoutedEventArgs e)
@@ -123,9 +130,12 @@ namespace HW1wpfApp
                 {
                     throw new ArgumentException("Book's new Price can only be lower then his old one");
                 }
+                decimal oldPrice = Books[Books.IndexOf(book2change)].Price;
                 Books[Books.IndexOf(book2change)].Price = tmp;
+                tbDisPrice.Text = tbPrice.Text;
+                rtbHistory.AppendText("change price of  " + book2change.Name + "to" + tbPrice.Text, "Blue");
             }
-            catch(ArgumentException ae)
+            catch (ArgumentException ae)
             {
                 MessageBox.Show(ae.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -152,6 +162,18 @@ namespace HW1wpfApp
                 }
             }
             return true;
+        }
+
+        private void clearBooksTextBoxes(Panel p)
+        {
+            foreach (var item in p.Children)
+            {
+                if (item is TextBox)
+                {
+                    TextBox tb = item as TextBox;
+                    tb.Text = null;
+                }
+            }
         }
         #endregion
 
