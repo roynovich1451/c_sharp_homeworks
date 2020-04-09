@@ -106,7 +106,7 @@
             <ListBox Name="lbBooks" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="5,0,0,0" SelectionChanged="lbBooks_SelectionChanged"/>
         </Grid>
         <!-- Add books sections -->
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Name="gDisBooks" Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

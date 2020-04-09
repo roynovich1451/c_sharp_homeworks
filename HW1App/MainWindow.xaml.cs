@@ -46,13 +46,14 @@ namespace HW1wpfApp
             {
                 Author a = new Author(tbAFN.Text, tbALN.Text, 1);
                 int index = Authors.IndexOf(a);
-                if (index != NOTFOUND)
+                if (index == NOTFOUND)
                 {
-                    Authors[index].Published += 1;
+                    Authors.Add(a);
                 }
                 else
                 {
-                    Authors.Add(a);
+                    a = Authors.ElementAt(index);
+                    a.Published += 1;
                 }
                 Book b = new Book(tbIsbn.Text, tbTitle.Text, a, int.Parse(tbNOC.Text), decimal.Parse(tbPrice.Text));
                 if (Books.Contains(b))
@@ -62,6 +63,7 @@ namespace HW1wpfApp
                 else
                 {
                     Books.Add(b);
+                    Books.OrderBy(Book => Book);
                     /*TODO: sort the book list 
                      * will learn next lesson
                      * Books - new ObservableCollection<Book>(Books.OrderBy(i => i.CompareTo()));
@@ -69,10 +71,11 @@ namespace HW1wpfApp
                 }
                 rtbHistory.AppendText("Added " + b.Name, "Green");
                 clearBooksTextBoxes(gBookDetails);
+                lbBooks.SelectedIndex = lbBooks.Items.Count - 1;
             }
             catch (WrongIsbnException wie)
             {
-                MessageBox.Show(wie.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(wie.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             catch (ArgumentException ae)
@@ -89,7 +92,47 @@ namespace HW1wpfApp
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
-            /*TODO: will learn after holiday*/
+            if (lbBooks.SelectedItem == null)
+            {
+                MessageBox.Show("You must select a Book to change number of copies", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            Book book2del = lbBooks.SelectedItem as Book;
+            MessageBoxResult res = MessageBox.Show("You're about to delete " + book2del.Name + " are you sure?", "Confirmation", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (res == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+            try
+            {
+                Author auth = book2del.Auth;
+                int pub = auth.Published - 1;
+                if (pub >= 0)
+                {
+                   auth.Published = pub;
+                }
+                rtbHistory.AppendText("Deleted "+ book2del.Name, "Red");
+                clearBooksTextBoxes(gBookDetails);
+                if (lbBooks.Items.Count == 0)
+                {
+                    clearBooksTextBoxes(gDisBooks);
+                }
+                else
+                {
+                    lbBooks.SelectedIndex = lbBooks.Items.Count - 1;
+                }
+                /*TODO: need to understand whats wrong with this line:
+                 * throw exeption that 
+                Books.Remove(book2del);
+                */
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
         }
 
         private void btnUpAm_Click(object sender, RoutedEventArgs e)
@@ -99,17 +142,31 @@ namespace HW1wpfApp
                 MessageBox.Show("You must select a Book to change number of copies", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            Book book2change = lbBooks.SelectedItem as Book;
-            if (!int.TryParse(tbNOC.Text, out int tmp) || string.IsNullOrEmpty(tbNOC.Text))
+            try
             {
-                MessageBox.Show("You must give natural number at 'copies' textbox", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Book book2change = lbBooks.SelectedItem as Book;
+                if (!int.TryParse(tbNOC.Text, out int tmp) || string.IsNullOrEmpty(tbNOC.Text))
+                {
+                    throw new ArgumentException("You must give natural number at 'copies' textbox");
+                }
+                int value = int.Parse(tbNOC.Text);
+                int oldAmount = Books[Books.IndexOf(book2change)].Copies;
+                Books[Books.IndexOf(book2change)].Copies = value;
+                tbDisCopies.Text = tbNOC.Text;
+                rtbHistory.AppendText("change amount of  " + book2change.Name + " from " + oldAmount + " to " + tbNOC.Text, "Blue");
+                clearBooksTextBoxes(gBookDetails);
+            }
+            catch (ArgumentException ae)
+            {
+                MessageBox.Show(ae.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            int value = int.Parse(tbNOC.Text);
-            int oldAmount = Books[Books.IndexOf(book2change)].Copies;
-            Books[Books.IndexOf(book2change)].Copies = value;
-            tbDisCopies.Text = tbNOC.Text;
-            rtbHistory.AppendText("change amount of  " + book2change.Name + " from " + oldAmount + " to " + tbNOC.Text, "Blue");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
         }
 
         private void btnUpPr_Click(object sender, RoutedEventArgs e)
@@ -133,7 +190,8 @@ namespace HW1wpfApp
                 decimal oldPrice = Books[Books.IndexOf(book2change)].Price;
                 Books[Books.IndexOf(book2change)].Price = tmp;
                 tbDisPrice.Text = tbPrice.Text;
-                rtbHistory.AppendText("change price of  " + book2change.Name + "to" + tbPrice.Text, "Blue");
+                rtbHistory.AppendText("change price of  " + book2change.Name + " to " + tbPrice.Text, "Blue");
+                clearBooksTextBoxes(gBookDetails);
             }
             catch (ArgumentException ae)
             {
@@ -186,6 +244,22 @@ namespace HW1wpfApp
             tbDisCopies.Text = selected.Copies.ToString();
             tbDisPrice.Text = selected.Price.ToString();
         }
+        #region checks
+        private void printAuthors(ObservableCollection<Author> ac)
+        {
+            foreach(var a in ac)
+            {
+                System.Diagnostics.Debug.WriteLine(a.ToString());
+            }
+        }
+        private void printBooks(ObservableCollection<Book> bc)
+        {
+            foreach (var b in bc)
+            {
+                System.Diagnostics.Debug.WriteLine(b.ToString());
+            }
+        }
+        #endregion
     }
 }
 

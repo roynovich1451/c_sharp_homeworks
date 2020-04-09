@@ -35,7 +35,7 @@ namespace HW1wpfApp
         {
             get
             {
-                return auth.Clone();
+                return auth;
             }
             set
             {

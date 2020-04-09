@@ -13,7 +13,7 @@ namespace CustomExtensions
         {
             BrushConverter bc = new BrushConverter();
             TextRange tr = new TextRange(box.Document.ContentEnd, box.Document.ContentEnd);
-            tr.Text = text;
+            tr.Text = text+"\r";
             try
             {
                 tr.ApplyPropertyValue(TextElement.ForegroundProperty,
