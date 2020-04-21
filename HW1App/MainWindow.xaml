@@ -22,7 +22,7 @@
         <!-- Book Details -->
         <GroupBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Margin="10">
             <GroupBox.Header>
-                <TextBlock FontWeight="Bold">book details</TextBlock>
+                <TextBlock FontWeight="Bold">Book Details</TextBlock>
             </GroupBox.Header>
             <Grid Name="gBookDetails">
                 <Grid.ColumnDefinitions>

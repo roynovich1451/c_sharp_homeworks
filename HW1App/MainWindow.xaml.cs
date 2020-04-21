@@ -1,19 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Xml;
 using CustomExtensions;
 
@@ -149,7 +140,7 @@ namespace HW1wpfApp
                 int oldAmount = Books[Books.IndexOf(book2change)].Copies;
                 Books[Books.IndexOf(book2change)].Copies = value;
                 tbDisCopies.Text = tbNOC.Text;
-                rtbHistory.AppendText("change amount of  " + book2change.Name + " from " + oldAmount + " to " + tbNOC.Text, "Blue");
+                rtbHistory.AppendText("Changed amount of " + book2change.Name + " from " + oldAmount + " to " + tbNOC.Text, "Blue");
                 clearBooksTextBoxes(gBookDetails);
             }
             catch (ArgumentException ae)
@@ -186,7 +177,7 @@ namespace HW1wpfApp
                 decimal oldPrice = Books[Books.IndexOf(book2change)].Price;
                 Books[Books.IndexOf(book2change)].Price = tmp;
                 tbDisPrice.Text = tbPrice.Text;
-                rtbHistory.AppendText("change price of  " + book2change.Name + " to " + tbPrice.Text, "Blue");
+                rtbHistory.AppendText("Changed price of " + book2change.Name + " to " + tbPrice.Text, "Blue");
                 clearBooksTextBoxes(gBookDetails);
             }
             catch (ArgumentException ae)

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace HW1wpfApp
@@ -24,7 +22,7 @@ namespace HW1wpfApp
             {
                 if (!Regex.Match(value, namePattern).Success)
                 {
-                    throw new ArgumentException("First name must contain only letters and start with capital letter");
+                    throw new ArgumentException("Author's first name must contain only letters and start with a capital letter");
                 }
                 firstName = value;
             }
@@ -39,7 +37,7 @@ namespace HW1wpfApp
             {
                 if (!Regex.Match(value, namePattern).Success)
                 {
-                    throw new ArgumentException("Last name must contain only letters and start with capital letter");
+                    throw new ArgumentException("Author's last name must contain only letters and start with a capital letter");
                 }
                 lastName = value;
             }
@@ -54,7 +52,7 @@ namespace HW1wpfApp
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Author book published must be natural number");
+                    throw new ArgumentException("Author's number of book published must be a natural number");
                 }
                 published = value;
             }
