@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HW1wpfApp"
         mc:Ignorable="d"
-        Title="Library" Height="450" Width="800">
+        Title="Library" Height="450" Width="800"
+        Closing="Window_Closing"
+        Initialized="Window_Initialized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

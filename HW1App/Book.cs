@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace HW1wpfApp
 {
-    class Book: IComparable
+    class Book : IComparable
     {
+        static string isbnPattern = @"^[0-9]{13}$";
+
         private string isbn;
         public string Name { get; set; }
-        private  Author auth;
+        private Author auth;
         private int copies;
         private decimal price;
         #region properties
@@ -20,13 +23,9 @@ namespace HW1wpfApp
             }
             set
             {
-                if (!isNumber(value))
+                if (!Regex.Match(value, isbnPattern).Success)
                 {
-                    throw new WrongIsbnException("ISBN must contains only numbers");
-                }
-                if (value.Length != 13)
-                {
-                    throw new WrongIsbnException("ISBN must have 13 digits");
+                    throw new WrongIsbnException("ISBN must contains 13 numbers only");
                 }
                 isbn = value;
             }
@@ -52,7 +51,7 @@ namespace HW1wpfApp
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("copies must get a natural number");
+                    throw new ArgumentException("Copies must get a natural number");
                 }
                 copies = value;
             }
@@ -67,7 +66,7 @@ namespace HW1wpfApp
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("book price can't be negative nubmer");
+                    throw new ArgumentException("Book price can't be negative nubmer");
                 }
                 price = value;
             }
@@ -99,23 +98,12 @@ namespace HW1wpfApp
         }
         #endregion
 
-        private bool isNumber(string str)
-        {
-            foreach(char c in str)
-            {
-                if(c < '0' || c > '9')
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
         public int CompareTo(object obj)
         {
             Book b = obj as Book;
             if (b == null)
             {
-                throw new ArgumentException("compareTo must get argument of type Book");
+                throw new ArgumentException("CompareTo must get argument of type Book");
             }
             else
             {

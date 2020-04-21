@@ -1,16 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace HW1wpfApp
 {
     class Author
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        static string namePattern = @"^[A-Z][a-zA-Z]*(\s+[a-zA-Z]*)*$";
+
+        private string firstName;
+        private string lastName;
         private int published;
 
         #region properties
+        public string FirstName
+        {
+            get
+            {
+                return firstName;
+            }
+            set
+            {
+                if (!Regex.Match(value, namePattern).Success)
+                {
+                    throw new ArgumentException("First name must contain only letters and start with capital letter");
+                }
+                firstName = value;
+            }
+        }
+        public string LastName
+        {
+            get
+            {
+                return lastName;
+            }
+            set
+            {
+                if (!Regex.Match(value, namePattern).Success)
+                {
+                    throw new ArgumentException("Last name must contain only letters and start with capital letter");
+                }
+                lastName = value;
+            }
+        }
         public int Published
         {
             get
