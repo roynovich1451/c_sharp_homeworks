@@ -1,3 +1,4 @@
+using CustomExtensions;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -6,8 +7,6 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
-using CustomExtensions;
-
 
 namespace HW1wpfApp
 {
@@ -20,9 +19,11 @@ namespace HW1wpfApp
 
         private ObservableCollection<Author> Authors;
         private ObservableCollection<Book> Books;
-        const int NOTFOUND = -1;
+        private const int NOTFOUND = -1;
 
         #region buttons_fanctionality
+
+        //Handle add book button
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (!allTextBoxFilled(gBookDetails))
@@ -76,6 +77,7 @@ namespace HW1wpfApp
             }
         }
 
+        //Handle delete selected book button
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
             if (lbBooks.SelectedItem == null)
@@ -112,16 +114,15 @@ namespace HW1wpfApp
                 {
                     lbBooks.SelectedIndex = lbBooks.Items.Count - 1;
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
         }
 
+        //Handle book copy amount change button
         private void btnUpAm_Click(object sender, RoutedEventArgs e)
         {
             if (lbBooks.SelectedItem == null)
@@ -153,9 +154,9 @@ namespace HW1wpfApp
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
         }
 
+        //Handle book price change button
         private void btnUpPr_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -191,8 +192,11 @@ namespace HW1wpfApp
                 return;
             }
         }
-        #endregion
+
+        #endregion buttons_fanctionality
+
         #region side_Functions
+
         private bool allTextBoxFilled(Panel p)
         {
             foreach (var item in p.Children)
@@ -208,6 +212,7 @@ namespace HW1wpfApp
             }
             return true;
         }
+
 
         private void clearBooksTextBoxes(Panel p)
         {
@@ -231,10 +236,13 @@ namespace HW1wpfApp
             tbDisCopies.Text = selected.Copies.ToString();
             tbDisPrice.Text = selected.Price.ToString();
         }
-        #endregion
+
+        #endregion side_Functions
 
         #region windowFunc
-        static string fileData = "appData.xml";
+
+        private static string fileData = "appData.xml";
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (Books.Count > 0)
@@ -351,10 +359,8 @@ namespace HW1wpfApp
                 reader.ReadEndElement();
             }
             reader.Close();
-
-
         }
-        #endregion
+
+        #endregion windowFunc
     }
 }
-

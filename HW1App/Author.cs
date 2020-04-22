@@ -3,15 +3,16 @@ using System.Text.RegularExpressions;
 
 namespace HW1wpfApp
 {
-    class Author
+    internal class Author : IComparable
     {
-        static string namePattern = @"^[A-Z][a-zA-Z]*(\s+[a-zA-Z]*)*$";
+        private static string namePattern = @"^[A-Z][a-zA-Z]*(\s+[a-zA-Z]*)*$";
 
         private string firstName;
         private string lastName;
         private int published;
 
         #region properties
+
         public string FirstName
         {
             get
@@ -27,6 +28,7 @@ namespace HW1wpfApp
                 firstName = value;
             }
         }
+
         public string LastName
         {
             get
@@ -42,6 +44,7 @@ namespace HW1wpfApp
                 lastName = value;
             }
         }
+
         public int Published
         {
             get
@@ -57,16 +60,22 @@ namespace HW1wpfApp
                 published = value;
             }
         }
-        #endregion
+
+        #endregion properties
+
         #region constructors
+
         public Author(string fn, string ln, int published)
         {
             FirstName = fn;
             LastName = ln;
             Published = published;
         }
-        #endregion
+
+        #endregion constructors
+
         #region overrides
+
         public override string ToString()
         {
             return FirstName + " " + LastName + ", number of published books:" + Published;
@@ -74,7 +83,7 @@ namespace HW1wpfApp
 
         internal Author Clone()
         {
-            return new Author(this.FirstName, this.LastName, this.Published);
+            return new Author(FirstName, LastName, Published);
         }
 
         public override bool Equals(object obj)
@@ -84,9 +93,28 @@ namespace HW1wpfApp
             {
                 throw new ArgumentException("Argument of Equals must be of type Author");
             }
-            return this.FirstName.Equals(other.FirstName) &&
-                this.LastName.Equals(other.LastName);
+            return FirstName.Equals(other.FirstName) &&
+                LastName.Equals(other.LastName);
         }
-        #endregion
+
+        public int CompareTo(object obj)
+        {
+            Author a = obj as Author;
+            if (a == null)
+            {
+                throw new ArgumentException("CompareTo must get argument of type Author");
+            }
+            else
+            {
+                int compare = lastName.CompareTo(a.lastName);
+                if (compare == 0)
+                {
+                    return firstName.CompareTo(a.firstName);
+                }
+                return compare;
+            }
+        }
+
+        #endregion overrides
     }
 }
