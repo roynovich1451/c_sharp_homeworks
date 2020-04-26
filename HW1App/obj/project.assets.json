@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Oren\\.nuget\\packages\\": {}
+    "C:\\Users\\royno\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\C#\\C_Sharp\\HW1App\\HW1wpfApp.csproj",
+      "projectUniqueName": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1App\\HW1wpfApp.csproj",
       "projectName": "HW1wpfApp",
-      "projectPath": "D:\\OneDrive\\C#\\C_Sharp\\HW1App\\HW1wpfApp.csproj",
-      "packagesPath": "C:\\Users\\Oren\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\C#\\C_Sharp\\HW1App\\obj\\",
+      "projectPath": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1App\\HW1wpfApp.csproj",
+      "packagesPath": "C:\\Users\\royno\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\royno\\Desktop\\C_Sharp\\HW1App\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Oren\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\royno\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
