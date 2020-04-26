@@ -7,6 +7,9 @@ using System.Windows.Media;
 
 namespace CustomExtensions
 {
+    /// <summary>
+    /// Override method for richTextBox.AppendText, add colorful line functionality
+    /// </summary>
     public static class richTextBoxExtension
     {
         public static void AppendText(this RichTextBox box, string text, string color)
