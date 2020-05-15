@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace HW1wpfApp
+namespace HW2
 {
-    internal class Author : IComparable
+    internal class MoviePerson : IComparable
     {
+        public enum myGender
+        {
+            male,
+            female
+        }
         private static string namePattern = @"^[A-Z][a-zA-Z]*(\s+[a-zA-Z]*)*$";
 
         private string firstName;
         private string lastName;
-        private int published;
+        private myGender gender;
+        private DateTime birthDate;
 
         #region properties
 
@@ -23,7 +29,7 @@ namespace HW1wpfApp
             {
                 if (!Regex.Match(value, namePattern).Success)
                 {
-                    throw new ArgumentException("Author's first name must contain only letters and start with a capital letter");
+                    throw new ArgumentException("MoviePerson's first name must contain only letters and start with a capital letter");
                 }
                 firstName = value;
             }
@@ -39,25 +45,32 @@ namespace HW1wpfApp
             {
                 if (!Regex.Match(value, namePattern).Success)
                 {
-                    throw new ArgumentException("Author's last name must contain only letters and start with a capital letter");
+                    throw new ArgumentException("MoviePerson's last name must contain only letters and start with a capital letter");
                 }
                 lastName = value;
             }
         }
 
-        public int Published
+        public myGender Gender
         {
             get
             {
-                return published;
+                return gender;
             }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Author's number of book published must be a natural number");
-                }
-                published = value;
+                Gender = value;
+            }
+        }
+        public DateTime BirthDate
+        {
+            get
+            {
+                return BirthDate;
+            }
+            set
+            {
+                BirthDate = value;
             }
         }
 
@@ -65,11 +78,12 @@ namespace HW1wpfApp
 
         #region constructors
 
-        public Author(string fn, string ln, int published)
+        public MoviePerson(string fn, string ln, myGender gen, DateTime bd)
         {
             FirstName = fn;
             LastName = ln;
-            Published = published;
+            Gender = gen;
+            BirthDate = bd;
         }
 
         #endregion constructors
@@ -78,20 +92,20 @@ namespace HW1wpfApp
 
         public override string ToString()
         {
-            return FirstName + " " + LastName + ", number of published books:" + Published;
+            return FirstName + " " + LastName + " Is a " + Gender + " That was born on " + BirthDate;
         }
 
-        internal Author Clone()
+        internal MoviePerson Clone()
         {
-            return new Author(FirstName, LastName, Published);
+            return new MoviePerson(FirstName, LastName, Gender, BirthDate);
         }
 
         public override bool Equals(object obj)
         {
-            Author other = obj as Author;
+            MoviePerson other = obj as MoviePerson;
             if (other == null)
             {
-                throw new ArgumentException("Argument of Equals must be of type Author");
+                throw new ArgumentException("Argument of Equals must be of type MoviePerson");
             }
             return FirstName.Equals(other.FirstName) &&
                 LastName.Equals(other.LastName);
@@ -99,10 +113,10 @@ namespace HW1wpfApp
 
         public int CompareTo(object obj)
         {
-            Author a = obj as Author;
+            MoviePerson a = obj as MoviePerson;
             if (a == null)
             {
-                throw new ArgumentException("CompareTo must get argument of type Author");
+                throw new ArgumentException("CompareTo must get argument of type MoviePerson");
             }
             else
             {

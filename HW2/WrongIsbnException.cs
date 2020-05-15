@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace HW1wpfApp
+namespace HW2
 {
     [Serializable]
     internal class WrongIsbnException : Exception

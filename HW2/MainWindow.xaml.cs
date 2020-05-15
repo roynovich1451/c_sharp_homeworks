@@ -18,7 +18,7 @@ namespace HW1wpfApp
         }
 
         private ObservableCollection<Author> Authors;
-        private ObservableCollection<Book> Books;
+        private ObservableCollection<Movie> Books;
         private const int NOTFOUND = -1;
 
         #region buttons_fanctionality
@@ -45,7 +45,7 @@ namespace HW1wpfApp
                     a = Authors.ElementAt(index);
                     a.Published += 1;
                 }
-                Book b = new Book(tbIsbn.Text, tbTitle.Text, a, int.Parse(tbNOC.Text), decimal.Parse(tbPrice.Text));
+                Movie b = new Movie(tbIsbn.Text, tbTitle.Text, a, int.Parse(tbNOC.Text), decimal.Parse(tbPrice.Text));
                 if (Books.Contains(b))
                 {
                     throw new IsbnInUseException("The book ISBN, " + b.Isbn + ", is in use at library");
@@ -53,7 +53,7 @@ namespace HW1wpfApp
                 else
                 {
                     Books.Add(b);
-                    Books = new ObservableCollection<Book>(Books.OrderBy(book => book));
+                    Books = new ObservableCollection<Movie>(Books.OrderBy(book => book));
                     lbBooks.ItemsSource = Books;
                 }
                 rtbHistory.AppendText("Added " + b.Name, "Green");
@@ -85,7 +85,7 @@ namespace HW1wpfApp
                 MessageBox.Show("You must select a Book in order to delete", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            Book book2del = lbBooks.SelectedItem as Book;
+            Movie book2del = lbBooks.SelectedItem as Movie;
             MessageBoxResult res = MessageBox.Show("You're about to delete " + book2del.Name + " are you sure?", "Confirmation", MessageBoxButton.OKCancel, MessageBoxImage.Question);
             if (res == MessageBoxResult.Cancel)
             {
@@ -132,7 +132,7 @@ namespace HW1wpfApp
             }
             try
             {
-                Book book2change = lbBooks.SelectedItem as Book;
+                Movie book2change = lbBooks.SelectedItem as Movie;
                 if (!int.TryParse(tbNOC.Text, out int tmp) || string.IsNullOrEmpty(tbNOC.Text))
                 {
                     throw new ArgumentException("You must give natural number at 'copies' textbox");
@@ -166,7 +166,7 @@ namespace HW1wpfApp
                     MessageBox.Show("You must select a Book to change his price", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                Book book2change = lbBooks.SelectedItem as Book;
+                Movie book2change = lbBooks.SelectedItem as Movie;
                 if (!decimal.TryParse(tbPrice.Text, out decimal tmp) || string.IsNullOrEmpty(tbPrice.Text))
                 {
                     throw new ArgumentException("You must give natural number at 'copies' textbox");
@@ -228,7 +228,7 @@ namespace HW1wpfApp
 
         private void lbBooks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Book selected = lbBooks.SelectedItem as Book;
+            Movie selected = lbBooks.SelectedItem as Movie;
             if (selected == null) return;
             Author auth = selected.Auth as Author;
             tbDisAuthor.Text = auth.FirstName + " " + auth.LastName;
@@ -295,7 +295,7 @@ namespace HW1wpfApp
         private void Window_Initialized(object sender, EventArgs e)
         {
             Authors = new ObservableCollection<Author>();
-            Books = new ObservableCollection<Book>();
+            Books = new ObservableCollection<Movie>();
             lbBooks.ItemsSource = Books;
             if (File.Exists("filePath"))
             {
@@ -343,7 +343,7 @@ namespace HW1wpfApp
             reader.Read();
             while (reader.Name == "Book")
             {
-                Book b;
+                Movie b;
                 Author tmp;
 
                 reader.ReadStartElement("Book");
@@ -354,7 +354,7 @@ namespace HW1wpfApp
                 int copies = int.Parse(reader.ReadElementString("Copies"));
                 decimal price = decimal.Parse(reader.ReadElementString("Price"));
                 tmp = new Author(afn, aln, 0);
-                b = new Book(isbn, title, Authors[Authors.IndexOf(tmp)], copies, price);
+                b = new Movie(isbn, title, Authors[Authors.IndexOf(tmp)], copies, price);
                 Books.Add(b);
                 reader.ReadEndElement();
             }

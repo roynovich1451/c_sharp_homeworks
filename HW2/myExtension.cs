@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -13,7 +11,7 @@ namespace CustomExtensions
         {
             BrushConverter bc = new BrushConverter();
             TextRange tr = new TextRange(box.Document.ContentEnd, box.Document.ContentEnd);
-            tr.Text = text+"\r";
+            tr.Text = text + "\r";
             try
             {
                 tr.ApplyPropertyValue(TextElement.ForegroundProperty,
