@@ -22,8 +22,11 @@ namespace HW1wpfApp
         private const int NOTFOUND = -1;
 
         #region buttons_fanctionality
-
-        //Handle add book button
+        /// <summary>
+        /// Handle add book button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (!allTextBoxFilled(gBookDetails))
@@ -76,8 +79,11 @@ namespace HW1wpfApp
                 return;
             }
         }
-
-        //Handle delete selected book button
+        /// <summary>
+        /// Handle delete selected book button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
             if (lbBooks.SelectedItem == null)
@@ -121,8 +127,11 @@ namespace HW1wpfApp
                 return;
             }
         }
-
-        //Handle book copy amount change button
+        /// <summary>
+        /// Handle book copy amount change button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpAm_Click(object sender, RoutedEventArgs e)
         {
             if (lbBooks.SelectedItem == null)
@@ -155,8 +164,11 @@ namespace HW1wpfApp
                 return;
             }
         }
-
-        //Handle book price change button
+        /// <summary>
+        /// Handle book price change button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpPr_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -196,6 +208,11 @@ namespace HW1wpfApp
         #endregion buttons_fanctionality
 
         #region side_Functions
+        /// <summary>
+        /// check if all text boxes inside given Panel are filled
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
 
         private bool allTextBoxFilled(Panel p)
         {
@@ -212,8 +229,10 @@ namespace HW1wpfApp
             }
             return true;
         }
-
-
+        /// <summary>
+        /// clear all text boxes inside given Panel
+        /// </summary>
+        /// <param name="p"></param>
         private void clearBooksTextBoxes(Panel p)
         {
             foreach (var item in p.Children)
@@ -225,7 +244,11 @@ namespace HW1wpfApp
                 }
             }
         }
-
+        /// <summary>
+        /// Handle selection change even at list box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lbBooks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Book selected = lbBooks.SelectedItem as Book;
@@ -242,7 +265,11 @@ namespace HW1wpfApp
         #region windowFunc
 
         private static string fileData = "appData.xml";
-
+        /// <summary>
+        /// Handle application closing event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (Books.Count > 0)
@@ -258,7 +285,9 @@ namespace HW1wpfApp
                 File.Delete(fileData);
             }
         }
-
+        /// <summary>
+        /// Save application data at output XML file
+        /// </summary>
         private void saveDataToFile()
         {
             XmlTextWriter writer = new XmlTextWriter(fileData, Encoding.Unicode);
@@ -291,7 +320,11 @@ namespace HW1wpfApp
             writer.WriteEndDocument();
             writer.Close();
         }
-
+        /// <summary>
+        /// Handle load data from file at application initialization process
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Initialized(object sender, EventArgs e)
         {
             Authors = new ObservableCollection<Author>();
@@ -310,7 +343,9 @@ namespace HW1wpfApp
                 }
             }
         }
-
+        /// <summary>
+        /// Get data from XML file
+        /// </summary>
         private void readDataFromXml()
         {
             XmlTextReader reader = new XmlTextReader(fileData);

@@ -5,6 +5,9 @@ namespace HW1wpfApp
 {
     internal class Author : IComparable
     {
+        /// <summary>
+        /// Regex pattern for correct name
+        /// </summary>
         private static string namePattern = @"^[A-Z][a-zA-Z]*(\s+[a-zA-Z]*)*$";
 
         private string firstName;
@@ -12,7 +15,9 @@ namespace HW1wpfApp
         private int published;
 
         #region properties
-
+        /// <summary>
+        /// Author's first name property
+        /// </summary>
         public string FirstName
         {
             get
@@ -28,7 +33,9 @@ namespace HW1wpfApp
                 firstName = value;
             }
         }
-
+        /// <summary>
+        /// Author's last name property
+        /// </summary>
         public string LastName
         {
             get
@@ -44,7 +51,9 @@ namespace HW1wpfApp
                 lastName = value;
             }
         }
-
+        /// <summary>
+        /// Author's number of published book property
+        /// </summary>
         public int Published
         {
             get
@@ -64,7 +73,12 @@ namespace HW1wpfApp
         #endregion properties
 
         #region constructors
-
+        /// <summary>
+        /// Author constructor, get 3 parameters
+        /// </summary>
+        /// <param name="fn"></param>
+        /// <param name="ln"></param>
+        /// <param name="published"></param>
         public Author(string fn, string ln, int published)
         {
             FirstName = fn;
@@ -75,17 +89,27 @@ namespace HW1wpfApp
         #endregion constructors
 
         #region overrides
-
+        /// <summary>
+        /// Author ToString method
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return FirstName + " " + LastName + ", number of published books:" + Published;
         }
-
+        /// <summary>
+        /// Author clone method, return new object with same data as called author
+        /// </summary>
+        /// <returns></returns>
         internal Author Clone()
         {
             return new Author(FirstName, LastName, Published);
         }
-
+        /// <summary>
+        /// Author equals method, compare first name and last name
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             Author other = obj as Author;
@@ -96,7 +120,11 @@ namespace HW1wpfApp
             return FirstName.Equals(other.FirstName) &&
                 LastName.Equals(other.LastName);
         }
-
+        /// <summary>
+        /// Author compareTo, compare author by lexicographic order
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public int CompareTo(object obj)
         {
             Author a = obj as Author;
