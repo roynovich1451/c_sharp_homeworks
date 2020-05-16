@@ -1,0 +1,89 @@
+﻿<Window x:Class="MovieApp.AddMovieWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MovieApp"
+        mc:Ignorable="d"
+        Title="Add Movie" Height="450" Width="800">
+    <!-- main GroupBox -->
+    <GroupBox Margin="10">
+        <GroupBox.Header>
+            <TextBlock FontWeight="Bold">Movie Data</TextBlock>
+        </GroupBox.Header>
+        <!-- Grid seperator GroupBox-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Grid Movie data -->
+            <Grid Grid.Row="0" Grid.Column="0" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="HorizontalAlignment" Value="right"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="10,0"/>
+                    </Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Margin" Value="0,20"/>
+                    </Style>
+                </Grid.Resources>
+                <Label Content="Title:" Grid.Row="0" Grid.Column="0" />
+                <TextBox Name="tbTitle" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True"/>
+                <Label Content="Year:" Grid.Row="1" Grid.Column="0" />
+                <TextBox Name="tbYear" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True"/>
+                <Label Content="Director:" Grid.Row="2" Grid.Column="0" />
+                <TextBox Name="tbDirector" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True"/>
+                <Label Content="IMDB score:" Grid.Row="3" Grid.Column="0" />
+                <TextBox Name="tbImdbScore" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True"/>
+                <Label Grid.Row="4" Grid.Column="0">
+                    <TextBlock Text="Rotten Tomatoes score:" TextWrapping="Wrap"/>
+                </Label>
+                <TextBox Name="tbRottenScore" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True"/>
+            </Grid>
+            <!-- GroupBox Actors -->
+            <GroupBox Name="gbActors" Grid.Row="0" Grid.Column="1">
+                <GroupBox.Header>
+                    <TextBlock FontWeight="Bold">Actors</TextBlock>
+                </GroupBox.Header>
+                <!-- Grid Actors -->
+                <Grid  Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Margin" Value="0,18"/>
+                        </Style>
+                    </Grid.Resources>
+                    <TextBox Name="tbActor1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True"/>
+                    <TextBox Name="tbActor2" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True"/>
+                    <TextBox Name="tbActor3" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True"/>
+                    <TextBox Name="tbActor4" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </GroupBox>
+</Window>
