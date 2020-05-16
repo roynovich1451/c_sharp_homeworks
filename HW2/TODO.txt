@@ -1,1 +1,0 @@
-﻿regex for title,year etc
