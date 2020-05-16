@@ -7,40 +7,29 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Icon="/title.ico">
-    <Grid Margin="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="12*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Menu line -->
-        <DockPanel VerticalAlignment="Center">
+    <!-- Menu line -->
+    <DockPanel>
         <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Add">
-                    <MenuItem Header="Actor">
-                        <MenuItem.Icon>
-                            <Image Source="/actor.ico"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="Movie">
-                        <MenuItem.Icon>
-                            <Image Source="/movie.ico"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="Director">
-                        <MenuItem.Icon>
-                            <Image Source="/director.ico"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                        </MenuItem>
-                <MenuItem Header="_Search">
+            <MenuItem Header="_Add">
+                <MenuItem Header="Actor">
+                    <MenuItem.Icon>
+                        <Image Source="/actor.ico"/>
+                    </MenuItem.Icon>
                 </MenuItem>
-            </Menu>
-    </DockPanel>
-    <!-- Movie ListBox -->
+                <MenuItem Header="Movie">
+                    <MenuItem.Icon>
+                        <Image Source="/movie.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Director">
+                    <MenuItem.Icon>
+                        <Image Source="/director.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Search">
+            </MenuItem>
+        </Menu>
         <ListBox Name="lbMovies" Grid.Row="1" Grid.Column="0"/>
-    </Grid>
+    </DockPanel>
 </Window>
