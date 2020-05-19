@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HW2
+namespace MovieProjectClasses
 {
     struct MovieKey
     {
         string title;
 
     }
-    internal class Movie : IComparable
+    public class Movie : IComparable
     {
         public string title;
         private MoviePerson director;

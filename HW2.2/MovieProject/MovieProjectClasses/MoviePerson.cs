@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 
-namespace HW2
+namespace MovieProjectClasses
 {
-    internal class MoviePerson : IComparable
+    public class MoviePerson : IComparable
     {
         public enum myGender
         {

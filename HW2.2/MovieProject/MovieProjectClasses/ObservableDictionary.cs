@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 
-namespace ProcessEmployees
+namespace MovieProjectClasses
 {
-    class ObservableDictionary<Key, Value> : INotifyPropertyChanged
+    public class ObservableDictionary<Key, Value> : INotifyPropertyChanged
     {
         private Dictionary<Key, Value> dict = new Dictionary<Key, Value>();
 
