@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -13,11 +15,14 @@ namespace MovieProjectClasses
             female
         }
         private static string namePattern = @"^[A-Z][a-zA-Z]*(\s+[a-zA-Z]*)*$";
+        //TODO:
+        //fix regex for date
+        private static string datePattern = @"^(0?[1-9]|[12][0-9]|[3][0-1])/(0?[1-9]|1[012])/([19]\d{2}|[20][01]\d|2020)$";
 
         private string firstName;
         private string lastName;
-        private myGender gender;
-        private DateTime birthDate;
+        private myGender Gender { get; set; }
+        private String birthDate;
 
         #region properties
 
@@ -53,18 +58,7 @@ namespace MovieProjectClasses
             }
         }
 
-        public myGender Gender
-        {
-            get
-            {
-                return gender;
-            }
-            set
-            {
-                Gender = value;
-            }
-        }
-        public DateTime BirthDate
+        public String BirthDate
         {
             get
             {
@@ -72,15 +66,18 @@ namespace MovieProjectClasses
             }
             set
             {
-                BirthDate = value;
+                if (!Regex.Match(value.ToString(), datePattern).Success)
+                {
+                    throw new ArgumentException("Invalid date");
+                }
+                birthDate = value;
             }
         }
 
         #endregion properties
 
         #region constructors
-
-        public MoviePerson(string fn, string ln, myGender gen, DateTime bd)
+        public MoviePerson(string fn, string ln, myGender gen, string bd)
         {
             FirstName = fn;
             LastName = ln;

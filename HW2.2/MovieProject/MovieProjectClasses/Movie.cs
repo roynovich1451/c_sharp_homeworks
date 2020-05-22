@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace MovieProjectClasses
 {
@@ -10,11 +11,15 @@ namespace MovieProjectClasses
     }
     public class Movie : IComparable
     {
+        private static string titlePattern = @"^[A-Za-z0-9,.\s]{50}$";
+        private static string yearPattern = @"^19\d\d|20[01]\d|2020$";
+        private static string scorePattern = @"^0?[0-9][.]\d{2}|10\.00$";
+
         public string title;
         private MoviePerson director;
         private int year;
         private int rotTomScore;
-        private double imdbScore;
+        private decimal imdbScore;
         private List<string> actors;
 
         #region properties
@@ -26,6 +31,10 @@ namespace MovieProjectClasses
             }
             set
             {
+                if (!Regex.Match(value.ToString(), titlePattern).Success)
+                {
+                    throw new ArgumentException("title is not valid");
+                }
                 title = value;
             }
         }
@@ -50,9 +59,9 @@ namespace MovieProjectClasses
             }
             set
             {
-                if (value < 1900 || value > 2020)
+                if (!Regex.Match(value.ToString(), yearPattern).Success)
                 {
-                    throw new ArgumentException("Year must get a natural number between 1900-2020");
+                    throw new ArgumentException("valid year from 1900 to 2020");
                 }
                 year = value;
             }
@@ -66,14 +75,14 @@ namespace MovieProjectClasses
             }
             set
             {
-                if (value < 0 || value > 10)
+                if (value < 0 || value > 100)
                 {
                     throw new ArgumentException("Rottten Tomato Score must get a natural number between 0-100");
                 }
                 rotTomScore = value;
             }
         }
-        public double ImdbScore
+        public decimal ImdbScore
         {
             get
             {
@@ -81,7 +90,7 @@ namespace MovieProjectClasses
             }
             set
             {
-                if (value < 0 || value > 10)
+                if (!Regex.Match(value.ToString(), scorePattern).Success)
                 {
                     throw new ArgumentException("ImdbScore must get a number between 0-10");
                 }
@@ -106,7 +115,7 @@ namespace MovieProjectClasses
 
         #region constuctors
 
-        public Movie(string title, MoviePerson director, int year, int rotTomScore, double imdbScore, List<string> actors)
+        public Movie(string title, MoviePerson director, int year, int rotTomScore, decimal imdbScore, List<string> actors)
         {
             Title = title;
             Director = director;

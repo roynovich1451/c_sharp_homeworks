@@ -82,6 +82,18 @@
                     <TextBox Name="tbActor2" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True"/>
                     <TextBox Name="tbActor3" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True"/>
                     <TextBox Name="tbActor4" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True"/>
+                    <Grid Grid.Row="4" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Name="btnSubmitMovie">
+                            <TextBlock Text="Add movie"/>
+                        </Button>
+                        <Button Name="btnOpenDropBox" Grid.Column="1">
+                            <TextBlock Text="Open dropBox"/>
+                        </Button>
+                    </Grid>
                 </Grid>
             </GroupBox>
         </Grid>

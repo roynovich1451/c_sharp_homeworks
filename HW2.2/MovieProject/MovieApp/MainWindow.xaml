@@ -11,7 +11,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Add">
-                <MenuItem Header="Actor">
+                <MenuItem Header="Actor" Click="add_actor_click">
                     <MenuItem.Icon>
                         <Image Source="/actor.ico"/>
                     </MenuItem.Icon>
@@ -21,7 +21,7 @@
                         <Image Source="/movie.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Director">
+                <MenuItem Header="Director" Click="add_actor_click">
                     <MenuItem.Icon>
                         <Image Source="/director.ico"/>
                     </MenuItem.Icon>
