@@ -23,19 +23,35 @@ namespace MovieApp
     
     public partial class MainWindow : Window
     {
-        ObservableCollection<MoviePerson> moviePeoples;
+        public ObservableCollection<MoviePerson> MovieDirectors { get; set; }
+        public ObservableCollection<MoviePerson> MovieActors { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            moviePeoples = new ObservableCollection<MoviePerson>();
+            MovieActors = new ObservableCollection<MoviePerson>();
+            MovieDirectors = new ObservableCollection<MoviePerson>();
         }
-
-        private void add_actor_click(object sender, RoutedEventArgs e)
+        #region menu_clicks
+        private void add_Person_click(object sender, RoutedEventArgs e)
         {
             AddMoviePersonWindow addActorWindow = new AddMoviePersonWindow();
             addActorWindow.ShowDialog();
             addActorWindow.Close();
-            moviePeoples.Add(addActorWindow.newPerson);
+            if (addActorWindow.newPerson.IsActor == true)
+            {
+                MovieActors.Add(addActorWindow.newPerson);
+            }
+            if (addActorWindow.newPerson.IsDirector == true)
+            {
+                MovieDirectors.Add(addActorWindow.newPerson);
+            }
+        }
+        #endregion
+
+        private void add_movie_click(object sender, RoutedEventArgs e)
+        {
+            AddMovieWindow addMovieWindow = new AddMovieWindow();
+
         }
     }
 }

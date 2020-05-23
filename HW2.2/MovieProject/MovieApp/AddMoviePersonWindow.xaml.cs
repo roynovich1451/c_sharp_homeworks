@@ -33,7 +33,10 @@ namespace MovieApp
                     throw new Exception("not all text boxes filled!");
                 }
                 myGender mg = checkMaleOrFemale();
-                newPerson = new MoviePerson(tbFirstName.Text, tbLastName.Text, mg, tbBirthDate.Text);
+                bool dir = cbDirector.IsChecked == true;
+                bool act = cbActor.IsChecked == true;
+
+                newPerson = new MoviePerson(tbFirstName.Text, tbLastName.Text, mg, tbBirthDate.Text, dir, act);
                 MessageBox.Show($"{newPerson.FirstName} {newPerson.LastName} added!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 return true;
             } 
@@ -61,6 +64,10 @@ namespace MovieApp
             if (cbMale.IsChecked == false && cbFemale.IsChecked == false)
             {
                 throw new Exception("Gender must be checked");
+            }
+            if (cbActor.IsChecked == false && cbDirector.IsChecked == false)
+            {
+                throw new Exception("New Person must have role");
             }
             return true;
         }

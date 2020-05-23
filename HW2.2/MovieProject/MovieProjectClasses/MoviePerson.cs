@@ -18,12 +18,14 @@ namespace MovieProjectClasses
         //TODO:
         //fix regex for date
         private static string datePattern = @"^(0?[1-9]|[12][0-9]|[3][0-1])/(0?[1-9]|1[012])/([19]\d{2}|[20][01]\d|2020)$";
+        private static string dummtPattern = @"^.*$";
 
         private string firstName;
         private string lastName;
-        private myGender Gender { get; set; }
+        public myGender Gender { get; set; }
         private String birthDate;
-
+        public bool IsActor { get; set; }
+        public bool IsDirector { get; set; }
         #region properties
 
         public string FirstName
@@ -66,9 +68,9 @@ namespace MovieProjectClasses
             }
             set
             {
-                if (!Regex.Match(value.ToString(), datePattern).Success)
+                if (!Regex.Match(value.ToString(), dummtPattern).Success)
                 {
-                    throw new ArgumentException("Invalid date");
+                    throw new ArgumentException("Invalid date was entered");
                 }
                 birthDate = value;
             }
@@ -77,12 +79,14 @@ namespace MovieProjectClasses
         #endregion properties
 
         #region constructors
-        public MoviePerson(string fn, string ln, myGender gen, string bd)
+        public MoviePerson(string fn, string ln, myGender gen, string bd, bool dir, bool act)
         {
             FirstName = fn;
             LastName = ln;
             Gender = gen;
             BirthDate = bd;
+            IsDirector = dir;
+            IsActor = act;
         }
 
         #endregion constructors
@@ -96,7 +100,7 @@ namespace MovieProjectClasses
 
         internal MoviePerson Clone()
         {
-            return new MoviePerson(FirstName, LastName, Gender, BirthDate);
+            return new MoviePerson(FirstName, LastName, Gender, BirthDate, IsDirector, IsActor);
         }
 
         public override bool Equals(object obj)

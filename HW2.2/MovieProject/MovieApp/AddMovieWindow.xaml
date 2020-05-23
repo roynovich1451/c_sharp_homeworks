@@ -56,46 +56,48 @@
                 </Label>
                 <TextBox Name="tbRottenScore" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True"/>
             </Grid>
-            <!-- GroupBox Actors -->
-            <GroupBox Name="gbActors" Grid.Row="0" Grid.Column="1">
-                <GroupBox.Header>
-                    <TextBlock FontWeight="Bold">Actors</TextBlock>
-                </GroupBox.Header>
-                <!-- Grid Actors -->
-                <Grid  Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+            <!-- Grid Actors -->
+            <Grid Grid.Row="0" Grid.Column="1"  Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Margin" Value="0,18"/>
+                    </Style>
+                </Grid.Resources>
+                <GroupBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                    <GroupBox.Header>
+                        <TextBlock FontWeight="Bold">Directors</TextBlock>
+                    </GroupBox.Header>
+                    <ListBox Name="lbDirectors"/>
+                </GroupBox>
+                <GroupBox Grid.Row="2" Grid.Column="0" Grid.RowSpan="2">
+                    <GroupBox.Header>
+                        <TextBlock FontWeight="Bold">Actors</TextBlock>
+                    </GroupBox.Header>
+                    <ListBox Name="lbActors"/>
+                </GroupBox>
+                <Grid Grid.Row="4" Grid.Column="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid.Resources>
-                        <Style TargetType="{x:Type TextBox}">
-                            <Setter Property="Margin" Value="0,18"/>
-                        </Style>
-                    </Grid.Resources>
-                    <TextBox Name="tbActor1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True"/>
-                    <TextBox Name="tbActor2" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True"/>
-                    <TextBox Name="tbActor3" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True"/>
-                    <TextBox Name="tbActor4" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True"/>
-                    <Grid Grid.Row="4" Grid.Column="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button Name="btnSubmitMovie">
-                            <TextBlock Text="Add movie"/>
-                        </Button>
-                        <Button Name="btnOpenDropBox" Grid.Column="1">
-                            <TextBlock Text="Open dropBox"/>
-                        </Button>
-                    </Grid>
+                    <Button Name="btnSubmitMovie">
+                        <TextBlock Text="Add movie"/>
+                    </Button>
+                    <Button Name="btnOpenDropBox" Grid.Column="1">
+                        <TextBlock Text="Open dropBox"/>
+                    </Button>
                 </Grid>
-            </GroupBox>
+            </Grid>
         </Grid>
     </GroupBox>
 </Window>
