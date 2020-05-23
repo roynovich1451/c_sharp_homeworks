@@ -18,6 +18,8 @@ namespace MovieProjectClasses
         //TODO:
         //fix regex for date
         private static string datePattern = @"^(0?[1-9]|[12][0-9]|[3][0-1])/(0?[1-9]|1[012])/([19]\d{2}|[20][01]\d|2020)$";
+        //TODO:
+        //remove when datePattern is ready
         private static string dummtPattern = @"^.*$";
 
         private string firstName;
@@ -64,7 +66,7 @@ namespace MovieProjectClasses
         {
             get
             {
-                return BirthDate;
+                return birthDate;
             }
             set
             {

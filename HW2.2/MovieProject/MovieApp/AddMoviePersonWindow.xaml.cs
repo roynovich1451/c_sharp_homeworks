@@ -1,6 +1,7 @@
 ﻿using MovieProjectClasses;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,7 +20,8 @@ namespace MovieApp
     /// </summary>
     public partial class AddMoviePersonWindow : Window
     {
-        public MoviePerson newPerson;
+        public ObservableCollection<MoviePerson> directors;
+        public ObservableCollection<MoviePerson> actors;
         public AddMoviePersonWindow()
         {
             InitializeComponent();
@@ -35,9 +37,16 @@ namespace MovieApp
                 myGender mg = checkMaleOrFemale();
                 bool dir = cbDirector.IsChecked == true;
                 bool act = cbActor.IsChecked == true;
+                MoviePerson temp = new MoviePerson(tbFirstName.Text, tbLastName.Text, mg, tbBirthDate.Text, dir, act);
+                if (dir == true)
+                {
+                    directors.Add(temp);
+                }
+                if (act == true)
+                {
+                    actors.Add(temp);
+                }
 
-                newPerson = new MoviePerson(tbFirstName.Text, tbLastName.Text, mg, tbBirthDate.Text, dir, act);
-                MessageBox.Show($"{newPerson.FirstName} {newPerson.LastName} added!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 return true;
             } 
             catch (Exception ex)
@@ -46,7 +55,11 @@ namespace MovieApp
                 return false;
             }
         }
-
+        public void connecListBox(ObservableCollection<MoviePerson> dir, ObservableCollection<MoviePerson> act, ObservableDictionary<MyKeyPair, Movie> mov)
+        {
+            actors = act;
+            directors = dir;
+        }
         private myGender checkMaleOrFemale()
         {
             if (cbMale.IsChecked == true) return myGender.male;
@@ -118,6 +131,14 @@ namespace MovieApp
             if (cbFemale.IsChecked == true)
             {
                 cbFemale.IsChecked = false;
+            }
+            if (cbActor.IsChecked == true)
+            {
+                cbActor.IsChecked = false;
+            }
+            if (cbDirector.IsChecked == true)
+            {
+                cbDirector.IsChecked = false;
             }
         }
     }

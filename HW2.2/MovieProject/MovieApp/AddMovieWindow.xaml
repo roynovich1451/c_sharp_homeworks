@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!-- Grid Movie data -->
-            <Grid Grid.Row="0" Grid.Column="0" Margin="10">
+            <Grid Name="movieDataGrid"  Grid.Row="0" Grid.Column="0" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -48,7 +48,7 @@
                 <Label Content="Year:" Grid.Row="1" Grid.Column="0" />
                 <TextBox Name="tbYear" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True"/>
                 <Label Content="Director:" Grid.Row="2" Grid.Column="0" />
-                <TextBox Name="tbDirector" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True"/>
+                <TextBox Name="tbDirector" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="False"/>
                 <Label Content="IMDB score:" Grid.Row="3" Grid.Column="0" />
                 <TextBox Name="tbImdbScore" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True"/>
                 <Label Grid.Row="4" Grid.Column="0">
@@ -72,6 +72,9 @@
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Margin" Value="0,18"/>
                     </Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="3"/>
+                    </Style>
                 </Grid.Resources>
                 <GroupBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
                     <GroupBox.Header>
@@ -89,12 +92,17 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Name="btnSubmitMovie">
+                    <Button Name="btnSubmitMovie" Grid.Column="3" Click="btnSubmitMovie_Click">
                         <TextBlock Text="Add movie"/>
                     </Button>
-                    <Button Name="btnOpenDropBox" Grid.Column="1">
-                        <TextBlock Text="Open dropBox"/>
+                    <Button Name="btnAddDirector" Grid.Column="0" Click="btnAddDirector_Click">
+                        <TextBlock Text="Add selected director" TextWrapping="Wrap"/>
+                    </Button>
+                    <Button Name="btnAddActor" Grid.Column="1" Click="btnAddActor_Click">
+                        <TextBlock Text="Add selected actor" TextWrapping="Wrap"/>
                     </Button>
                 </Grid>
             </Grid>

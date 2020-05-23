@@ -23,35 +23,44 @@ namespace MovieApp
     
     public partial class MainWindow : Window
     {
-        public ObservableCollection<MoviePerson> MovieDirectors { get; set; }
-        public ObservableCollection<MoviePerson> MovieActors { get; set; }
+        
+        ObservableCollection<MoviePerson> movieDirectors;
+        ObservableCollection<MoviePerson> movieActors;
+        ObservableDictionary<MyKeyPair, Movie> movies;
         public MainWindow()
         {
             InitializeComponent();
-            MovieActors = new ObservableCollection<MoviePerson>();
-            MovieDirectors = new ObservableCollection<MoviePerson>();
+            movieDirectors = new ObservableCollection<MoviePerson>();
+            movieActors = new ObservableCollection<MoviePerson>();
+            movies = new ObservableDictionary<MyKeyPair, Movie>();
         }
+
+        private delegate void connectObservableCollections(ObservableCollection<MoviePerson> dir, ObservableCollection<MoviePerson> act, ObservableDictionary<MyKeyPair, Movie> mov);
+        private event connectObservableCollections sendToWindow;
+
         #region menu_clicks
         private void add_Person_click(object sender, RoutedEventArgs e)
         {
             AddMoviePersonWindow addActorWindow = new AddMoviePersonWindow();
+            sendToWindow += addActorWindow.connecListBox;
+            sendToWindow(movieDirectors, movieActors, movies);
             addActorWindow.ShowDialog();
             addActorWindow.Close();
-            if (addActorWindow.newPerson.IsActor == true)
-            {
-                MovieActors.Add(addActorWindow.newPerson);
-            }
-            if (addActorWindow.newPerson.IsDirector == true)
-            {
-                MovieDirectors.Add(addActorWindow.newPerson);
-            }
         }
         #endregion
 
         private void add_movie_click(object sender, RoutedEventArgs e)
         {
+            if(movieActors.Count == 0 || movieDirectors.Count == 0)
+            {
+                MessageBox.Show("Before adding movie, need actors and directors", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             AddMovieWindow addMovieWindow = new AddMovieWindow();
-
+            sendToWindow += addMovieWindow.connecListBox;
+            sendToWindow(movieDirectors, movieActors, movies);
+            addMovieWindow.ShowDialog();
+            addMovieWindow.Close();
         }
     }
 }
