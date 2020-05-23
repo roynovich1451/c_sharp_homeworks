@@ -14,9 +14,9 @@ namespace MovieProjectClasses
             male,
             female
         }
-        private static string namePattern = @"^[A-Z][a-zA-Z]*(\s+[a-zA-Z]*)*$";
         //TODO:
         //fix regex for date
+        private static string namePattern = @"^[A-Z][a-zA-Z]*(\s+[a-zA-Z]*)*$";
         private static string datePattern = @"^(0?[1-9]|[12][0-9]|[3][0-1])/(0?[1-9]|1[012])/([19]\d{2}|[20][01]\d|2020)$";
         private static string dummtPattern = @"^.*$";
 
@@ -26,6 +26,7 @@ namespace MovieProjectClasses
         private String birthDate;
         public bool IsActor { get; set; }
         public bool IsDirector { get; set; }
+
         #region properties
 
         public string FirstName
