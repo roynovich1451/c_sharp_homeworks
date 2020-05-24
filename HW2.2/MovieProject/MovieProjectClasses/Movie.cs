@@ -11,9 +11,11 @@ namespace MovieProjectClasses
     }
     public class Movie : IComparable
     {
-        private static string titlePattern = @"^[A-Za-z0-9,.\s]{50}$";
+        //TODO:
+        //change titlePattern as expected
+        private static string titlePattern = @"^.{50}$";
         private static string yearPattern = @"^19\d\d|20[01]\d|2020$";
-        private static string scorePattern = @"^0?[0-9][.]\d{2}|10\.00$";
+        private static string scorePattern = @"^0?[0-9][.]\d|10\.0$";
 
         public string title;
         private MoviePerson director;

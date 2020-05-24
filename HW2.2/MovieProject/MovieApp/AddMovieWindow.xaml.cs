@@ -28,6 +28,7 @@ namespace MovieApp
         public AddMovieWindow()
         {
             InitializeComponent();
+            actors = new List<string>();
         }
         public void connecListBox(ObservableCollection<MoviePerson> dir, ObservableCollection<MoviePerson> act, ObservableDictionary<MyKeyPair, Movie> mov)
         {
@@ -45,7 +46,7 @@ namespace MovieApp
             {
                 return;
             }
-            if (actors.Contains(selected.ToString()) == true)
+            if (actors.Count !=0 && actors.Contains(selected.ToString()) == true)
             {
                 MessageBox.Show($"{selected.FirstName} {selected.LastName} already picked", "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
