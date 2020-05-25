@@ -13,7 +13,7 @@ namespace MovieProjectClasses
     {
         //TODO:
         //change titlePattern as expected
-        private static string titlePattern = @"^.{50}$";
+        private static string titlePattern = @"^[A-Z0-9]([a-zA-z0-9]|[,.\s]){0,49}$";
         private static string yearPattern = @"^19\d\d|20[01]\d|2020$";
         private static string scorePattern = @"^0?[0-9][.]\d|10\.0$";
 

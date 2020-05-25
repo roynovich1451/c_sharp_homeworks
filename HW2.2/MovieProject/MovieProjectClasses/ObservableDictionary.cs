@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 
 namespace MovieProjectClasses
@@ -44,6 +46,13 @@ namespace MovieProjectClasses
         {
             Dict.Remove(key);
             var temp = Dict;
+            Dict = null;
+            Dict = temp;
+        }
+
+        public void OrderDict()
+        {
+            var temp = Dict.OrderBy(dic => dic.Key).ToDictionary(dic => dic.Key, dic => dic.Value);
             Dict = null;
             Dict = temp;
         }

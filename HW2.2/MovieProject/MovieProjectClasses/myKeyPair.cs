@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace MovieProjectClasses
 {
-    public class MyKeyPair
+    public class MyKeyPair: IComparable
     {
         public string Name { set; get; }
         public int Year { set; get; }
@@ -17,17 +18,26 @@ namespace MovieProjectClasses
         #endregion
         public override bool Equals(object obj)
         {
-            if (obj is MyKeyPair)
+            if (!(obj is MyKeyPair mp))
             {
                 throw new Exception("Equals must get mtKeyPair argument");
             }
-            MyKeyPair mk = obj as MyKeyPair;
-            return this.Name.Equals(mk.Name) &&
-                this.Year.Equals(mk.Year);
+            return this.Name.Equals(mp.Name) &&
+                this.Year.Equals(mp.Year);
         }
         public override string ToString()
         {
             return $"{Name} {Year.ToString()}";
+        }
+        public int CompareTo(object obj)
+        {
+            if(!(obj is MyKeyPair mp))
+            {
+                throw new ArgumentException("compareTo must get MyKetPair");
+            }
+            int ret = this.Year.CompareTo(mp.Year);
+            if (ret != 0) return ret;
+            return this.Name.CompareTo(mp.Name);
         }
     }
 

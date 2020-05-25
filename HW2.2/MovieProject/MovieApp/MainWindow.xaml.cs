@@ -34,6 +34,13 @@ namespace MovieApp
         public MainWindow()
         {
             InitializeComponent();
+            movieActors = new ObservableCollection<MoviePerson>();
+            movieDirectors = new ObservableCollection<MoviePerson>();
+            movies = new ObservableDictionary<MyKeyPair, Movie>();
+            DataContext = movies;
+            movieActors.OrderBy(act => act.FirstName).ThenBy(act => act.LastName);
+            movieDirectors.OrderBy(dir => dir.FirstName).ThenBy(dir => dir.LastName);
+            movies.OrderDict();
         }
 
         private delegate void connectObservableCollections(ObservableCollection<MoviePerson> dir, ObservableCollection<MoviePerson> act, ObservableDictionary<MyKeyPair, Movie> mov);
@@ -45,8 +52,6 @@ namespace MovieApp
             AddMoviePersonWindow addActorWindow = new AddMoviePersonWindow();
             sendToWindow += addActorWindow.connecListBox;
             sendToWindow(movieDirectors, movieActors, movies);
-            addActorWindow.ShowDialog();
-            addActorWindow.Close();
         }
         #endregion
 
@@ -60,34 +65,42 @@ namespace MovieApp
             AddMovieWindow addMovieWindow = new AddMovieWindow();
             sendToWindow += addMovieWindow.connecListBox;
             sendToWindow(movieDirectors, movieActors, movies);
-            addMovieWindow.ShowDialog();
-            addMovieWindow.Close();
         }
 
-        private void Window_Initialized(object sender, EventArgs e)
+        private void search_by_string_click(object sender, RoutedEventArgs e)
         {
-            movieActors = new ObservableCollection<MoviePerson>();
-            movieDirectors = new ObservableCollection<MoviePerson>();
-            movies = new ObservableDictionary<MyKeyPair, Movie>();
-            //lbMovies.ItemsSource = movies;
-            if (File.Exists("filePath"))
-            {
-                using (StreamReader handle = new StreamReader("filePath"))
-                {
-                    fileData = handle.ReadToEnd();
-                }
-                if (File.Exists(fileData))
-                {
-                    Console.WriteLine("exist");
-                    readDataFromXml();
-                }
-            }
+
         }
+
+        private void search_by_score_click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        /*
+                private void Window_Initialized(object sender, EventArgs e)
+                {
+
+                    /*if (File.Exists("filePath"))
+                    {
+                        using (StreamReader handle = new StreamReader("filePath"))
+                        {
+                            fileData = handle.ReadToEnd();
+                        }
+                        if (File.Exists(fileData))
+                        {
+                            Console.WriteLine("exist");
+                            readDataFromXml();
+                        }
+                    }
+
+                }
+                 */
         /// <summary>
         /// Handle application closing event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+/*
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (movieActors.Count > 0 || movieDirectors.Count > 0)
@@ -103,9 +116,11 @@ namespace MovieApp
                 File.Delete(fileData);
             }
         }
+        */
         /// <summary>
         /// Save application data at output XML file
         /// </summary>
+        /*
         private void saveDataToFile()
         {
             //Write movie directors
@@ -140,7 +155,7 @@ namespace MovieApp
 
             //Write movies
             writer.WriteStartElement("Movies");
-            /*foreach (var m in movies)
+            foreach (var m in movies)
             {
                 writer.WriteStartElement("Movie");
                 writer.WriteElementString("Title", m.Name);
@@ -158,10 +173,10 @@ namespace MovieApp
                 writer.WriteEndElement();
             
         writer.WriteEndElement();
-            writer.WriteEndDocument();*/
+            writer.WriteEndDocument();
             writer.Close();
         }
-
+  */
         /// <summary>
         /// Handle load data from file at application initialization process
         /// </summary>
@@ -171,6 +186,7 @@ namespace MovieApp
         /// <summary>
         /// Get data from XML file
         /// </summary>
+        /*
         private void readDataFromXml()
         {
             XmlTextReader reader = new XmlTextReader(fileData);
@@ -260,6 +276,8 @@ namespace MovieApp
             }
             reader.Close();
         }
+        */
+
 
     }
 }

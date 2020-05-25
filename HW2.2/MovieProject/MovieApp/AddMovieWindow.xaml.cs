@@ -29,6 +29,7 @@ namespace MovieApp
         {
             InitializeComponent();
             actors = new List<string>();
+            Show();
         }
         public void connecListBox(ObservableCollection<MoviePerson> dir, ObservableCollection<MoviePerson> act, ObservableDictionary<MyKeyPair, Movie> mov)
         {
@@ -39,6 +40,12 @@ namespace MovieApp
 
         private void btnAddActor_Click(object sender, RoutedEventArgs e)
         {
+            if (lbActors.SelectedItem == null)
+            {
+                    MessageBox.Show("Must select actor first", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             MoviePerson selected = lbActors.SelectedItem as MoviePerson;
             MessageBoxResult res = MessageBox.Show($"Add {selected.FirstName} {selected.LastName} as movie actor?", "Confirm pick",
                 MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -57,6 +64,12 @@ namespace MovieApp
 
         private void btnAddDirector_Click(object sender, RoutedEventArgs e)
         {
+            if (lbDirectors.SelectedItem == null)
+            {
+                MessageBox.Show("Must select director first", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             MoviePerson selected = lbDirectors.SelectedItem as MoviePerson;
             MessageBoxResult res = MessageBox.Show($"Add {selected.FirstName} {selected.LastName} as movie director?", "Confirm pick",
                 MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -96,7 +109,7 @@ namespace MovieApp
                         actors);
                     movies.Add(new MyKeyPair(temp.Title, temp.Year), temp);
                     cleanForm(movieDataGrid);
-                    
+                    actors = new List<string>();
                 }
                 return;
             }

@@ -5,8 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MovieApp"
         mc:Ignorable="d"
-        Initialized="Window_Initialized"
-        Closing="Window_Closing"
         Title="MainWindow" Height="450" Width="800"
         Icon="/title.ico">
     <!-- Menu line -->
@@ -14,19 +12,25 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Add">
                 <MenuItem Header="Person" Click="add_Person_click">
-                    <MenuItem.Icon>
-                        <Image Source="/actor.ico"/>
-                    </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Movie" Click="add_movie_click">
-                    <MenuItem.Icon>
-                        <Image Source="/movie.ico"/>
-                    </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Search">
+                <MenuItem Header="By name" Click="search_by_string_click">
+                </MenuItem>
+                <MenuItem Header="By year" Click="search_by_string_click">
+                </MenuItem>
+                <MenuItem Header="By director" Click="search_by_string_click">
+                </MenuItem>
+                <MenuItem Header="By actor" Click="search_by_string_click">
+                </MenuItem>
+                <MenuItem Header="By IMDB score" Click="search_by_score_click">
+                </MenuItem>
+                <MenuItem Header="By Rotten Tomatoes score" Click="search_by_score_click">
+                </MenuItem>
             </MenuItem>
         </Menu>
-        <ListBox Name="lbMovies" Grid.Row="1" Grid.Column="0"/>
+        <ListBox Name="lbMovies" Grid.Row="1" Grid.Column="0" DataContext="{Binding movie}"/>
     </DockPanel>
 </Window>

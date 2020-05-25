@@ -25,6 +25,7 @@ namespace MovieApp
         public AddMoviePersonWindow()
         {
             InitializeComponent();
+            Show();
         }
         private bool generatePerson() 
         {
