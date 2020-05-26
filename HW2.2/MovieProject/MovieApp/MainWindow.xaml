@@ -17,17 +17,17 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Search">
-                <MenuItem Header="By name" Click="search_by_string_click">
+                <MenuItem Header="By name" Click="search_by_name_click">
                 </MenuItem>
-                <MenuItem Header="By year" Click="search_by_string_click">
+                <MenuItem Header="By year" Click="search_by_year_click">
                 </MenuItem>
-                <MenuItem Header="By director" Click="search_by_string_click">
+                <MenuItem Header="By director" Click="search_by_director_click">
                 </MenuItem>
-                <MenuItem Header="By actor" Click="search_by_string_click">
+                <MenuItem Header="By actor" Click="search_by_actor_click">
                 </MenuItem>
-                <MenuItem Header="By IMDB score" Click="search_by_score_click">
+                <MenuItem Header="By IMDB score" Click="search_by_imdb_click">
                 </MenuItem>
-                <MenuItem Header="By Rotten Tomatoes score" Click="search_by_score_click">
+                <MenuItem Header="By Rotten Tomatoes score" Click="search_by_rotten_click">
                 </MenuItem>
             </MenuItem>
         </Menu>

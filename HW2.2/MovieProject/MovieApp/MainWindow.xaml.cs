@@ -38,9 +38,7 @@ namespace MovieApp
             movieDirectors = new ObservableCollection<MoviePerson>();
             movies = new ObservableDictionary<MyKeyPair, Movie>();
             DataContext = movies;
-            movieActors.OrderBy(act => act.FirstName).ThenBy(act => act.LastName);
-            movieDirectors.OrderBy(dir => dir.FirstName).ThenBy(dir => dir.LastName);
-            movies.OrderDict();
+            orderAllLists();
         }
 
         private delegate void connectObservableCollections(ObservableCollection<MoviePerson> dir, ObservableCollection<MoviePerson> act, ObservableDictionary<MyKeyPair, Movie> mov);
@@ -66,16 +64,53 @@ namespace MovieApp
             sendToWindow += addMovieWindow.connecListBox;
             sendToWindow(movieDirectors, movieActors, movies);
         }
+        void orderAllLists()
+        {
+            movieActors.OrderBy(act => act.FirstName).ThenBy(act => act.LastName);
+            movieDirectors.OrderBy(dir => dir.FirstName).ThenBy(dir => dir.LastName);
+            movies.OrderDict();
+        } 
 
-        private void search_by_string_click(object sender, RoutedEventArgs e)
+        private void search_by_imdb_click(object sender, RoutedEventArgs e)
+        {
+            if(movies.Dict.Count == 0)
+            {
+                MessageBox.Show("No movies entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            SearchWindow sw = new SearchWindow("IMDB", movies);
+        }
+
+        private void search_by_rotten_click(object sender, RoutedEventArgs e)
+        {
+            if (movies.Dict.Count == 0)
+            {
+                MessageBox.Show("No movies entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            SearchWindow sw = new SearchWindow("Rotten", movies);
+        }
+
+        private void search_by_name_click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void search_by_score_click(object sender, RoutedEventArgs e)
+        private void search_by_year_click(object sender, RoutedEventArgs e)
         {
 
         }
+
+        private void search_by_director_click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void search_by_actor_click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         /*
                 private void Window_Initialized(object sender, EventArgs e)
                 {
@@ -100,23 +135,23 @@ namespace MovieApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-/*
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (movieActors.Count > 0 || movieDirectors.Count > 0)
-            {
-                using (StreamWriter handle = new StreamWriter("filePath"))
+        /*
+                private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
                 {
-                    handle.Write(fileData);
+                    if (movieActors.Count > 0 || movieDirectors.Count > 0)
+                    {
+                        using (StreamWriter handle = new StreamWriter("filePath"))
+                        {
+                            handle.Write(fileData);
+                        }
+                        saveDataToFile();
+                    }
+                    else
+                    {
+                        File.Delete(fileData);
+                    }
                 }
-                saveDataToFile();
-            }
-            else
-            {
-                File.Delete(fileData);
-            }
-        }
-        */
+                */
         /// <summary>
         /// Save application data at output XML file
         /// </summary>
