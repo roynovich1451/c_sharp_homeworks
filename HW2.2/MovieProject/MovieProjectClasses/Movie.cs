@@ -142,7 +142,14 @@ namespace MovieProjectClasses
 
         public override string ToString()
         {
-            return Title + ", " + Year;
+            string actorString="{";
+            foreach(var name in actors)
+            {
+                actorString += $"{name}, ";
+            }
+            actorString.Substring(0, actorString.Length-2);
+            actorString += "}";
+            return $"{Title}, {Year}, Director: {Director}, Actors: {actorString} IMDB: {ImdbScore}, Rotten Tomatoes: {RotTomScore}";
         }
 
         #endregion overrides

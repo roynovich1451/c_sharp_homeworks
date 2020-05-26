@@ -38,7 +38,7 @@ namespace MovieApp
         {
             try
             {
-                calculateSearchRes("GT", whichSearch, tbValue.Text);
+                calculateSearchRes("GT", whichSearch, tbValue.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -50,7 +50,7 @@ namespace MovieApp
         {
             try
             {
-                calculateSearchRes("LT", whichSearch, tbValue.Text);
+                calculateSearchRes("LT", whichSearch, tbValue.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -62,7 +62,7 @@ namespace MovieApp
         {
             try
             {
-                calculateSearchRes("GET", whichSearch, tbValue.Text);
+                calculateSearchRes("GET", whichSearch, tbValue.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace MovieApp
         {
             try
             {
-                calculateSearchRes("LET", whichSearch, tbValue.Text);
+                calculateSearchRes("LET", whichSearch, tbValue.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -126,7 +126,10 @@ namespace MovieApp
                                     searchResultsToShow.Add($"{mov.Title}, Rotten score: {mov.RotTomScore}");
                                 }
                             break;
-                           
+                    }
+                    if (searchResultsToShow.Count == 0)
+                    {
+                        searchResultsToShow.Add("No matches found");
                     }
                     break;
                 case "IMDB":
@@ -171,6 +174,10 @@ namespace MovieApp
 
                     }
                     break;
+            }
+            if (searchResultsToShow.Count == 0)
+            {
+                searchResultsToShow.Add("No matches found");
             }
         }
     }

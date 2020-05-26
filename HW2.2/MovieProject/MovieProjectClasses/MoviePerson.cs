@@ -97,7 +97,7 @@ namespace MovieProjectClasses
 
         public override string ToString()
         {
-            return FirstName + " " + LastName + " Is a " + Gender + " That was born on " + BirthDate;
+            return $"{FirstName} {LastName}";
         }
 
         internal MoviePerson Clone()

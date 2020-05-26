@@ -59,7 +59,7 @@ namespace MovieApp
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            actors.Add(selected.ToString());
+            actors.Add($"{selected.FirstName} {selected.LastName}");
         }
 
         private void btnAddDirector_Click(object sender, RoutedEventArgs e)
@@ -110,6 +110,7 @@ namespace MovieApp
                     movies.Add(new MyKeyPair(temp.Title, temp.Year), temp);
                     cleanForm(movieDataGrid);
                     actors = new List<string>();
+                    movies.OrderDict();
                 }
                 return;
             }

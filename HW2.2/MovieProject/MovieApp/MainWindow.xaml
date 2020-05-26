@@ -30,7 +30,15 @@
                 <MenuItem Header="By Rotten Tomatoes score" Click="search_by_rotten_click">
                 </MenuItem>
             </MenuItem>
+            <MenuItem Header="_Delete" Click="delete_Click"/>
         </Menu>
-        <ListBox Name="lbMovies" Grid.Row="1" Grid.Column="0" DataContext="{Binding movie}"/>
+        <ListBox Name="lbMovies" Grid.Row="1" Grid.Column="0" 
+                 ItemsSource="{Binding Dict}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Value}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </DockPanel>
 </Window>
