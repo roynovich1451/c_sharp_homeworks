@@ -15,7 +15,7 @@ namespace MovieProjectClasses
         //change titlePattern as expected
         private static string titlePattern = @"^[A-Z0-9]([a-zA-z0-9]|[,.\s]){0,49}$";
         private static string yearPattern = @"^19\d\d|20[01]\d|2020$";
-        private static string scorePattern = @"^0?[0-9][.]\d|10\.0$";
+        private static string scorePattern = @"^[0-9](\.\d)?|10$";
 
         public string title;
         private MoviePerson director;
@@ -147,7 +147,7 @@ namespace MovieProjectClasses
             {
                 actorString += $"{name}, ";
             }
-            actorString.Substring(0, actorString.Length-2);
+            actorString = actorString.Substring(0, actorString.Length-2);
             actorString += "}";
             return $"{Title}, {Year}, Director: {Director}, Actors: {actorString} IMDB: {ImdbScore}, Rotten Tomatoes: {RotTomScore}";
         }

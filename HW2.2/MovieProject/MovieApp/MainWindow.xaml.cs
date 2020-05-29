@@ -72,65 +72,62 @@ namespace MovieApp
         } 
 
         private void search_by_imdb_click(object sender, RoutedEventArgs e)
-        {/*
+        {
             if(movies.Dict.Count == 0)
             {
                 MessageBox.Show("No movies entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }*/
+            }
             SearchWindow sw = new SearchWindow("IMDB", movies);
         }
 
         private void search_by_rotten_click(object sender, RoutedEventArgs e)
-        {/*
+        {
             if (movies.Dict.Count == 0)
             {
                 MessageBox.Show("No movies entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }*/
+            }
             SearchWindow sw = new SearchWindow("Rotten", movies);
         }
 
         private void search_by_name_click(object sender, RoutedEventArgs e)
         {
-            /*
             if (movies.Dict.Count == 0)
             {
                 MessageBox.Show("No movies entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }*/
+            }
             searchStringWindow sw = new searchStringWindow("name", movies);
         }
 
         private void search_by_year_click(object sender, RoutedEventArgs e)
         {
-            /*
             if (movies.Dict.Count == 0)
             {
                 MessageBox.Show("No movies entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }*/
+            }
             searchStringWindow sw = new searchStringWindow("year", movies);
         }
 
         private void search_by_director_click(object sender, RoutedEventArgs e)
         {
-            /*if (movies.Dict.Count == 0)
+            if (movies.Dict.Count == 0)
             {
                 MessageBox.Show("No movies entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }*/
+            }
             searchStringWindow sw = new searchStringWindow("director", movies);
         }
 
         private void search_by_actor_click(object sender, RoutedEventArgs e)
         {
-            /*
             if (movies.Dict.Count == 0)
             {
                 MessageBox.Show("No movies entered", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }*/
+            }
             searchStringWindow sw = new searchStringWindow("actor", movies);
         }
 
@@ -141,17 +138,17 @@ namespace MovieApp
                 MessageBox.Show("No movies entered yet", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            var selDel = lbMovies.SelectedItem.ToString();
-            var stL = selDel.Split(',');
-            string title = stL[1].Trim();
-            stL[2] = stL[2].Substring(0, stL[2].Length - 1);
-            int year = int.Parse(stL[2].Trim());
-            MyKeyPair keyDel = new MyKeyPair(title, year);
-            if (keyDel == null)
+            if (lbMovies.SelectedItem == null)
             {
                 MessageBox.Show("Must pick movie to delete", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            var selDel = lbMovies.SelectedItem.ToString();
+            var stL = selDel.Split(',');
+            string title = stL[1].Trim();
+            stL[2] = stL[2].Substring(0, stL[2].Length);
+            int year = int.Parse(stL[2].Trim());
+            MyKeyPair keyDel = new MyKeyPair(title, year);
             MessageBoxResult res = MessageBox.Show($"Are you sure you want to delete '{title}'?", "Confirm pick", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.No)
             {

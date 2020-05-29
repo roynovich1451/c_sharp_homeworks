@@ -15,12 +15,7 @@ namespace MovieProjectClasses
             female
         }
         private static string namePattern = @"^[A-Z][a-zA-Z]*(\s+[a-zA-Z]*)*$";
-        //TODO:
-        //fix regex for date
-        private static string datePattern = @"^(0?[1-9]|[12][0-9]|[3][0-1])/(0?[1-9]|1[012])/([19]\d{2}|[20][01]\d|2020)$";
-        //TODO:
-        //remove when datePattern is ready
-        private static string dummtPattern = @"^.*$";
+        private static string datePattern = @"^(0?[1-9]|[12]\d|3[012])/(0?[1-9]|1[012])/(19\d{2}|20[01]\d|2020)$";
 
         private string firstName;
         private string lastName;
@@ -70,7 +65,7 @@ namespace MovieProjectClasses
             }
             set
             {
-                if (!Regex.Match(value.ToString(), dummtPattern).Success)
+                if (!Regex.Match(value.ToString(), datePattern).Success)
                 {
                     throw new ArgumentException("Invalid date was entered");
                 }
