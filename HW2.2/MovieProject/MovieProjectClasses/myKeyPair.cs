@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
 
 namespace MovieProjectClasses
 {
-    public class MyKeyPair: IComparable
+    public class MyKeyPair : IComparable
     {
         public string Name { set; get; }
         public int Year { set; get; }
@@ -20,7 +17,7 @@ namespace MovieProjectClasses
         {
             if (!(obj is MyKeyPair mp))
             {
-                throw new Exception("Equals must get mtKeyPair argument");
+                throw new Exception("Equals must get MyKeyPair argument");
             }
             return this.Name.Equals(mp.Name) &&
                 this.Year.Equals(mp.Year);
@@ -31,9 +28,9 @@ namespace MovieProjectClasses
         }
         public int CompareTo(object obj)
         {
-            if(!(obj is MyKeyPair mp))
+            if (!(obj is MyKeyPair mp))
             {
-                throw new ArgumentException("compareTo must get MyKetPair");
+                throw new ArgumentException("compareTo must get MyKeyPair");
             }
             int ret = this.Year.CompareTo(mp.Year);
             if (ret != 0) return ret;
