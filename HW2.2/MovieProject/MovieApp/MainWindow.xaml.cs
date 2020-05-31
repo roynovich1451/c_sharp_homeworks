@@ -18,7 +18,8 @@ namespace MovieApp
 
     public partial class MainWindow : Window
     {
-        private static string fileData = "DATA.xml";
+        private static string filePath = "Data.xml";
+        private static string fileData = "appData.xml";
 
         ObservableCollection<MoviePerson> movieDirectors;
         ObservableCollection<MoviePerson> movieActors;
@@ -162,15 +163,14 @@ namespace MovieApp
         private void Window_Initialized(object sender, EventArgs e)
         {
 
-            if (File.Exists(fileData))
+            if (File.Exists(filePath))
             {
-                using (StreamReader handle = new StreamReader(fileData))
+                using (StreamReader handle = new StreamReader(filePath))
                 {
                     fileData = handle.ReadToEnd();
                 }
                 if (File.Exists(fileData))
                 {
-                    Console.WriteLine("exist");
                     readDataFromXml();
                 }
             }
@@ -186,7 +186,7 @@ namespace MovieApp
         {
             if (movieActors.Count > 0 || movieDirectors.Count > 0)
             {
-                using (StreamWriter handle = new StreamWriter(fileData))
+                using (StreamWriter handle = new StreamWriter(filePath))
                 {
                     handle.Write(fileData);
                 }
@@ -237,24 +237,28 @@ namespace MovieApp
             writer.WriteEndElement();
 
             //Write movies
-            writer.WriteStartElement("Movies");
-            foreach (var m in movies.Dict)
+            if (movies.Dict.Count != 0)
             {
-                writer.WriteStartElement("Movie");
-                writer.WriteElementString("Title", m.Value.title);
-                writer.WriteElementString("Dir", m.Value.Director.ToString());
-                writer.WriteElementString("Year", m.Value.Year.ToString());
-                writer.WriteElementString("RTS", m.Value.RotTomScore.ToString());
-                writer.WriteElementString("IS", m.Value.ImdbScore.ToString());
-                writer.WriteString("Actors:");
-                foreach (var s in m.Value.Actors)
+                writer.WriteStartElement("Movies");
+                foreach (var m in movies.Dict)
                 {
-                    writer.WriteElementString("Actor", s);
+                    writer.WriteStartElement("Movie");
+                    writer.WriteElementString("Title", m.Value.title);
+                    writer.WriteElementString("Dir", m.Value.Director.ToString());
+                    writer.WriteElementString("Year", m.Value.Year.ToString());
+                    writer.WriteElementString("RTS", m.Value.RotTomScore.ToString());
+                    writer.WriteElementString("IS", m.Value.ImdbScore.ToString());
+                    writer.WriteString("Actors:");
+                    foreach (var s in m.Value.Actors)
+                    {
+                        writer.WriteElementString("Actor", s);
+                    }
+                    writer.WriteEndElement();
                 }
-                writer.WriteEndElement();
-            }
 
-            writer.WriteEndElement();
+                writer.WriteEndElement();
+
+            }
             writer.WriteEndDocument();
             writer.Close();
         }
