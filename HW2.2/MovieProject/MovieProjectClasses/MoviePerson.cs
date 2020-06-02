@@ -12,7 +12,7 @@ namespace MovieProjectClasses
         }
         private static string namePattern = @"^[A-Z][a-zA-Z]*(\s+[a-zA-Z]*)*$";
         private static string datePattern = @"^(0?[1-9]|[12]\d|3[012])/(0?[1-9]|1[012])/(19\d{2}|20[01]\d|2020)$";
-
+    
         private string firstName;
         private string lastName;
         public myGender Gender { get; set; }
@@ -104,7 +104,8 @@ namespace MovieProjectClasses
                 throw new ArgumentException("Argument of Equals must be of type MoviePerson");
             }
             return FirstName.Equals(other.FirstName) &&
-                LastName.Equals(other.LastName);
+                LastName.Equals(other.LastName) && 
+                BirthDate.Equals(other.BirthDate);
         }
 
         public int CompareTo(object obj)

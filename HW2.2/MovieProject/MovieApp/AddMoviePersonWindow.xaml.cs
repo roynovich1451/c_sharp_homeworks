@@ -39,6 +39,10 @@ namespace MovieApp
                 bool dir = cbDirector.IsChecked == true;
                 bool act = cbActor.IsChecked == true;
                 MoviePerson temp = new MoviePerson(tbFirstName.Text, tbLastName.Text, mg, tbBirthDate.Text, dir, act);
+                if (directors.Contains(temp) || actors.Contains(temp))
+                {
+                    throw new Exception($"{temp.FirstName} {temp.LastName} added before");
+                }
                 if (dir == true)
                 {
                     directors.Add(temp);

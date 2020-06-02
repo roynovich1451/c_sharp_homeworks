@@ -25,8 +25,6 @@ namespace MovieApp
         public MainWindow()
         {
             InitializeComponent();
-
-            orderAllLists();
         }
 
         private delegate void connectObservableCollections(ObservableCollection<MoviePerson> dir, ObservableCollection<MoviePerson> act, ObservableDictionary<MyKeyPair, Movie> mov);
@@ -161,6 +159,7 @@ namespace MovieApp
             movieDirectors = new ObservableCollection<MoviePerson>();
             movies = new ObservableDictionary<MyKeyPair, Movie>();
             DataContext = movies;
+            orderAllLists();
             if (File.Exists(filePath))
             {
                 using (StreamReader handle = new StreamReader(filePath))
@@ -249,7 +248,6 @@ namespace MovieApp
                     foreach (var s in m.Value.Actors)
                     {
                         writer.WriteElementString("Actor", s);
-                        // writer.WriteEndElement();
                     }
                     writer.WriteEndElement();
                 }
@@ -326,7 +324,7 @@ namespace MovieApp
                     g = MoviePerson.myGender.female;
                 string bd = reader.ReadElementString("BD");
                 a = new MoviePerson(fn, ln, g, bd, false, true);
-                movieDirectors.Add(a);
+                movieActors.Add(a);
                 reader.ReadEndElement();
             }
 
@@ -366,7 +364,7 @@ namespace MovieApp
         MoviePerson findMoviePersonByName(string s)
         {
             string[] split = s.Split();
-            foreach (var n in movieActors)
+            foreach (var n in movieDirectors)
                 if (split[0].Equals(n.FirstName) && split[1].Equals(n.LastName))
                     return n;
             return null;

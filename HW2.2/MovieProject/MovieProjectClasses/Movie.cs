@@ -147,7 +147,7 @@ namespace MovieProjectClasses
             }
             actorString = actorString.Substring(0, actorString.Length - 2);
             actorString += "}";
-            return $"{Title}, {Year}, Director: {Director}, Actors: {actorString} IMDB: {ImdbScore}, Rotten Tomatoes: {RotTomScore}";
+            return $"{Title}, {Year}, Director: {Director}, Actors: {actorString}, IMDB: {ImdbScore}, Rotten Tomatoes: {RotTomScore}";
         }
 
         #endregion overrides
