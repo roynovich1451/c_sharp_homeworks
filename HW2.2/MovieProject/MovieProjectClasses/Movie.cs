@@ -150,8 +150,6 @@ namespace MovieProjectClasses
             return $"{Title}, {Year}, Director: {Director}, Actors: {actorString}, IMDB: {ImdbScore}, Rotten Tomatoes: {RotTomScore}";
         }
 
-        #endregion overrides
-
         public int CompareTo(object obj)
         {
             if (!(obj is Movie b))
@@ -163,5 +161,6 @@ namespace MovieProjectClasses
                 return Title.CompareTo(b.Title);
             }
         }
+        #endregion overrides
     }
 }

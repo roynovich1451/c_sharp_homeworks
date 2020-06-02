@@ -34,6 +34,7 @@ namespace MovieApp
             Show();
         }
 
+        #region clicks
         private void btnGT_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -81,7 +82,15 @@ namespace MovieApp
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
 
+        #region helpers
+        /// <summary>
+        /// search movies in list for IMDB or Rotten Tomatoes scores
+        /// </summary>
+        /// <param name="op"></param>
+        /// <param name="which"></param>
+        /// <param name="input"></param>
         private void calculateSearchRes(string op, string which, string input)
         {
             searchResultsToShow.Clear();
@@ -180,5 +189,6 @@ namespace MovieApp
                 searchResultsToShow.Add("No matches found");
             }
         }
+        #endregion
     }
 }

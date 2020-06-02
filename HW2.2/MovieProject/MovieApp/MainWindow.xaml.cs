@@ -29,6 +29,190 @@ namespace MovieApp
 
         private delegate void connectObservableCollections(ObservableCollection<MoviePerson> dir, ObservableCollection<MoviePerson> act, ObservableDictionary<MyKeyPair, Movie> mov);
         private event connectObservableCollections sendToWindow;
+        #region helpers
+        /// <summary>
+        /// order all lists
+        /// </summary>
+        void orderAllLists()
+        {
+            movieActors.OrderBy(act => act.FirstName).ThenBy(act => act.LastName);
+            movieDirectors.OrderBy(dir => dir.FirstName).ThenBy(dir => dir.LastName);
+            movies.OrderDict();
+        }
+
+        /// <summary>
+        /// Save application data at output XML file
+        /// </summary>
+        private void saveDataToFile()
+        {
+            //Write movie directors
+            XmlTextWriter writer = new XmlTextWriter(fileData, Encoding.Unicode)
+            {
+                Formatting = Formatting.Indented
+            };
+            writer.WriteStartDocument();
+            writer.WriteStartElement("DATA");
+            writer.WriteStartElement("MovieDirectors");
+            foreach (var md in movieDirectors)
+            {
+                writer.WriteStartElement("MovieDirector");
+                writer.WriteElementString("FN", md.FirstName);
+                writer.WriteElementString("LN", md.LastName);
+                writer.WriteElementString("GEN", md.Gender.ToString());
+                writer.WriteElementString("BD", md.BirthDate.ToString());
+                writer.WriteEndElement();
+            }
+            writer.WriteEndElement();
+            //Write movie actors
+            writer.WriteStartElement("MovieActors");
+            foreach (var ma in movieActors)
+            {
+                writer.WriteStartElement("MovieActor");
+                writer.WriteElementString("FN", ma.FirstName);
+                writer.WriteElementString("LN", ma.LastName);
+                writer.WriteElementString("GEN", ma.Gender.ToString());
+                writer.WriteElementString("BD", ma.BirthDate.ToString());
+                writer.WriteEndElement();
+            }
+            writer.WriteEndElement();
+            //Write movies
+            if (movies.Dict.Count != 0)
+            {
+                writer.WriteStartElement("Movies");
+                foreach (var m in movies.Dict)
+                {
+                    writer.WriteStartElement("Movie");
+                    writer.WriteElementString("Title", m.Value.title);
+                    writer.WriteElementString("Dir", m.Value.Director.ToString());
+                    writer.WriteElementString("Year", m.Value.Year.ToString());
+                    writer.WriteElementString("RTS", m.Value.RotTomScore.ToString());
+                    writer.WriteElementString("IS", m.Value.ImdbScore.ToString());
+                    foreach (var s in m.Value.Actors)
+                    {
+                        writer.WriteElementString("Actor", s);
+                    }
+                    writer.WriteEndElement();
+                }
+
+                writer.WriteEndElement();
+
+            }
+            writer.WriteEndDocument();
+            writer.Close();
+        }
+
+        /// <summary>
+        /// Handle load data from file at application initialization process
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <summary>
+        /// Get data from XML file
+        /// </summary>
+        void readDataFromXml()
+        {
+            XmlTextReader reader = new XmlTextReader(fileData);
+            reader.WhitespaceHandling = WhitespaceHandling.None;
+            while (reader.Name != "DATA")
+            {
+                reader.Read();
+            }
+
+            //Read movie directors
+            while (reader.Name != "MovieDirectors")
+            {
+                reader.Read();
+            }
+            reader.Read();
+            while (reader.Name == "MovieDirector")
+            {
+                MoviePerson a;
+
+                reader.ReadStartElement("MovieDirector");
+                string fn = reader.ReadElementString("FN");
+                string ln = reader.ReadElementString("LN");
+                string gen = reader.ReadElementString("GEN");
+                string bd = reader.ReadElementString("BD");
+                MoviePerson.myGender g;
+                if (gen.Equals("male"))
+                    g = MoviePerson.myGender.male;
+                else
+                    g = MoviePerson.myGender.female;
+                a = new MoviePerson(fn, ln, g, bd, true, false);
+                movieDirectors.Add(a);
+                reader.ReadEndElement();
+            }
+
+            //Read movie actors
+            while (reader.Name != "MovieActors")
+            {
+                reader.Read();
+            }
+            reader.Read();
+            while (reader.Name == "MovieActor")
+            {
+                MoviePerson a;
+
+                reader.ReadStartElement("MovieActor");
+                string fn = reader.ReadElementString("FN");
+                string ln = reader.ReadElementString("LN");
+                string gen = reader.ReadElementString("GEN");
+                MoviePerson.myGender g;
+                if (gen.Equals("male"))
+                    g = MoviePerson.myGender.male;
+                else
+                    g = MoviePerson.myGender.female;
+                string bd = reader.ReadElementString("BD");
+                a = new MoviePerson(fn, ln, g, bd, false, true);
+                movieActors.Add(a);
+                reader.ReadEndElement();
+            }
+
+            //Read movies
+            while (reader.Name != "Movies")
+            {
+                reader.Read();
+            }
+            reader.Read();
+            while (reader.Name == "Movie")
+            {
+
+                reader.ReadStartElement("Movie");
+
+                string title = reader.ReadElementString("Title");
+                string dir = reader.ReadElementString("Dir");
+                MoviePerson realDirector = findMoviePersonByName(dir);
+                int year = int.Parse(reader.ReadElementString("Year"));
+                int RT = int.Parse(reader.ReadElementString("RTS"));
+                decimal IS = decimal.Parse(reader.ReadElementString("IS"));
+                List<string> actors = new List<string>();
+                while (reader.Name == "Actor")
+                {
+                    actors.Add(reader.ReadElementString("Actor"));
+                }
+
+                Movie m = new Movie(title, realDirector, year, RT, IS, actors);
+                movies.Add(new MyKeyPair(title, year), m);
+                reader.ReadEndElement();
+            }
+
+            reader.Close();
+        }
+
+        /// <summary>
+        /// search for director in moviedirectors
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        MoviePerson findMoviePersonByName(string s)
+        {
+            string[] split = s.Split();
+            foreach (var n in movieDirectors)
+                if (split[0].Equals(n.FirstName) && split[1].Equals(n.LastName))
+                    return n;
+            return null;
+        }
+        #endregion
 
         #region menu_clicks
         private void add_Person_click(object sender, RoutedEventArgs e)
@@ -37,7 +221,6 @@ namespace MovieApp
             sendToWindow += addActorWindow.connecListBox;
             sendToWindow(movieDirectors, movieActors, movies);
         }
-        #endregion
 
         private void add_movie_click(object sender, RoutedEventArgs e)
         {
@@ -50,12 +233,6 @@ namespace MovieApp
             sendToWindow += addMovieWindow.connecListBox;
             sendToWindow(movieDirectors, movieActors, movies);
 
-        }
-        void orderAllLists()
-        {
-            movieActors.OrderBy(act => act.FirstName).ThenBy(act => act.LastName);
-            movieDirectors.OrderBy(dir => dir.FirstName).ThenBy(dir => dir.LastName);
-            movies.OrderDict();
         }
 
         private void search_by_imdb_click(object sender, RoutedEventArgs e)
@@ -152,7 +329,9 @@ namespace MovieApp
             movies.OrderDict();
             return;
         }
+        #endregion
 
+        #region save_load
         private void Window_Initialized(object sender, EventArgs e)
         {
             movieActors = new ObservableCollection<MoviePerson>();
@@ -194,180 +373,6 @@ namespace MovieApp
                 File.Delete(fileData);
             }
         }
-
-        /// <summary>
-        /// Save application data at output XML file
-        /// </summary>
-
-        private void saveDataToFile()
-        {
-            //Write movie directors
-            XmlTextWriter writer = new XmlTextWriter(fileData, Encoding.Unicode)
-            {
-                Formatting = Formatting.Indented
-            };
-            writer.WriteStartDocument();
-            writer.WriteStartElement("DATA");
-            writer.WriteStartElement("MovieDirectors");
-            foreach (var md in movieDirectors)
-            {
-                writer.WriteStartElement("MovieDirector");
-                writer.WriteElementString("FN", md.FirstName);
-                writer.WriteElementString("LN", md.LastName);
-                writer.WriteElementString("GEN", md.Gender.ToString());
-                writer.WriteElementString("BD", md.BirthDate.ToString());
-                writer.WriteEndElement();
-            }
-            writer.WriteEndElement();
-
-            //Write movie actors
-            writer.WriteStartElement("MovieActors");
-            foreach (var ma in movieActors)
-            {
-                writer.WriteStartElement("MovieActor");
-                writer.WriteElementString("FN", ma.FirstName);
-                writer.WriteElementString("LN", ma.LastName);
-                writer.WriteElementString("GEN", ma.Gender.ToString());
-                writer.WriteElementString("BD", ma.BirthDate.ToString());
-                writer.WriteEndElement();
-            }
-            writer.WriteEndElement();
-
-            //Write movies
-            if (movies.Dict.Count != 0)
-            {
-                writer.WriteStartElement("Movies");
-                foreach (var m in movies.Dict)
-                {
-                    writer.WriteStartElement("Movie");
-                    writer.WriteElementString("Title", m.Value.title);
-                    writer.WriteElementString("Dir", m.Value.Director.ToString());
-                    writer.WriteElementString("Year", m.Value.Year.ToString());
-                    writer.WriteElementString("RTS", m.Value.RotTomScore.ToString());
-                    writer.WriteElementString("IS", m.Value.ImdbScore.ToString());
-                    foreach (var s in m.Value.Actors)
-                    {
-                        writer.WriteElementString("Actor", s);
-                    }
-                    writer.WriteEndElement();
-                }
-
-                writer.WriteEndElement();
-
-            }
-            writer.WriteEndDocument();
-            writer.Close();
-        }
-        /// <summary>
-        /// Handle load data from file at application initialization process
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-        /// <summary>
-        /// Get data from XML file
-        /// </summary>
-
-        void readDataFromXml()
-        {
-            XmlTextReader reader = new XmlTextReader(fileData);
-            reader.WhitespaceHandling = WhitespaceHandling.None;
-            while (reader.Name != "DATA")
-            {
-                reader.Read();
-            }
-
-            //Read movie directors
-            while (reader.Name != "MovieDirectors")
-            {
-                reader.Read();
-            }
-            reader.Read();
-            while (reader.Name == "MovieDirector")
-            {
-                MoviePerson a;
-
-                reader.ReadStartElement("MovieDirector");
-                string fn = reader.ReadElementString("FN");
-                string ln = reader.ReadElementString("LN");
-                string gen = reader.ReadElementString("GEN");
-                string bd = reader.ReadElementString("BD");
-                MoviePerson.myGender g;
-                if (gen.Equals("male"))
-                    g = MoviePerson.myGender.male;
-                else
-                    g = MoviePerson.myGender.female;
-                a = new MoviePerson(fn, ln, g, bd, true, false);
-                movieDirectors.Add(a);
-                reader.ReadEndElement();
-            }
-
-            //Read movie actors
-
-            while (reader.Name != "MovieActors")
-            {
-                reader.Read();
-            }
-            reader.Read();
-            while (reader.Name == "MovieActor")
-            {
-                MoviePerson a;
-
-                reader.ReadStartElement("MovieActor");
-                string fn = reader.ReadElementString("FN");
-                string ln = reader.ReadElementString("LN");
-                string gen = reader.ReadElementString("GEN");
-                MoviePerson.myGender g;
-                if (gen.Equals("male"))
-                    g = MoviePerson.myGender.male;
-                else
-                    g = MoviePerson.myGender.female;
-                string bd = reader.ReadElementString("BD");
-                a = new MoviePerson(fn, ln, g, bd, false, true);
-                movieActors.Add(a);
-                reader.ReadEndElement();
-            }
-
-
-            //Read movies
-            while (reader.Name != "Movies")
-            {
-                reader.Read();
-            }
-            reader.Read();
-            while (reader.Name == "Movie")
-            {
-
-                reader.ReadStartElement("Movie");
-
-                string title = reader.ReadElementString("Title");
-                string dir = reader.ReadElementString("Dir");
-                MoviePerson realDirector = findMoviePersonByName(dir);
-                int year = int.Parse(reader.ReadElementString("Year"));
-                int RT = int.Parse(reader.ReadElementString("RTS"));
-                decimal IS = decimal.Parse(reader.ReadElementString("IS"));
-                List<string> actors = new List<string>();
-                while (reader.Name == "Actor")
-                {
-                    actors.Add(reader.ReadElementString("Actor"));
-                }
-
-                Movie m = new Movie(title, realDirector, year, RT, IS, actors);
-                movies.Add(new MyKeyPair(title, year), m);
-                reader.ReadEndElement();
-            }
-
-            reader.Close();
-
-        }
-
-        MoviePerson findMoviePersonByName(string s)
-        {
-            string[] split = s.Split();
-            foreach (var n in movieDirectors)
-                if (split[0].Equals(n.FirstName) && split[1].Equals(n.LastName))
-                    return n;
-            return null;
-        }
+        #endregion
     }
 }

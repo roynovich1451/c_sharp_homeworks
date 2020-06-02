@@ -13,6 +13,8 @@ namespace MovieProjectClasses
             Year = i;
         }
         #endregion
+
+        #region overrides
         public override bool Equals(object obj)
         {
             if (!(obj is MyKeyPair mp))
@@ -22,10 +24,12 @@ namespace MovieProjectClasses
             return this.Name.Equals(mp.Name) &&
                 this.Year.Equals(mp.Year);
         }
+
         public override string ToString()
         {
             return $"{Name} {Year.ToString()}";
         }
+
         public int CompareTo(object obj)
         {
             if (!(obj is MyKeyPair mp))
@@ -36,6 +40,7 @@ namespace MovieProjectClasses
             if (ret != 0) return ret;
             return this.Name.CompareTo(mp.Name);
         }
+        #endregion
     }
 
 }

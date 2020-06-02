@@ -32,7 +32,7 @@ namespace MovieApp
             this.whichSearch = whichSearch;
             Show();
         }
-
+        #region clicks
         private void btnSearch_click(object sender, RoutedEventArgs e)
         {
             try
@@ -44,7 +44,12 @@ namespace MovieApp
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
 
+        #region helpers
+        /// <summary>
+        /// search function for movies in list
+        /// </summary>
         private void calculateSearchRes()
         {
             searchResultsToShow.Clear();
@@ -106,5 +111,6 @@ namespace MovieApp
                 searchResultsToShow.Add("No match found");
             }
         }
+        #endregion
     }
 }

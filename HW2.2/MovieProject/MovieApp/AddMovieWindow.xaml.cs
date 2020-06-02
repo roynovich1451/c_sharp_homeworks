@@ -31,6 +31,13 @@ namespace MovieApp
             actors = new List<string>();
             Show();
         }
+        #region helpers
+        /// <summary>
+        /// connect window's lists with mainwindow's lists
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <param name="act"></param>
+        /// <param name="mov"></param>
         public void connecListBox(ObservableCollection<MoviePerson> dir, ObservableCollection<MoviePerson> act, ObservableDictionary<MyKeyPair, Movie> mov)
         {
             lbActors.ItemsSource = act;
@@ -38,6 +45,49 @@ namespace MovieApp
             movies = mov;
         }
 
+        /// <summary>
+        /// check all TB filled
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        private bool checkAllBoxesFilled(Panel p)
+        {
+            if (string.IsNullOrEmpty(tbTitle.Text) ||
+                string.IsNullOrEmpty(tbYear.Text) ||
+                string.IsNullOrEmpty(tbRottenScore.Text) ||
+                string.IsNullOrEmpty(tbImdbScore.Text))
+            {
+                throw new Exception("All text box must be filled!");
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// clear all TB
+        /// </summary>
+        /// <param name="p"></param>
+        private void cleanForm(Panel p)
+        {
+            foreach (var item in p.Children)
+            {
+                if (item is TextBox)
+                {
+                    TextBox tb = item as TextBox;
+                    if (!string.IsNullOrEmpty(tb.Text))
+                    {
+                        tb.Text = "";
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region clicks
+        /// <summary>
+        /// add actor to new movie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddActor_Click(object sender, RoutedEventArgs e)
         {
             if (lbActors.SelectedItem == null)
@@ -62,6 +112,11 @@ namespace MovieApp
             actors.Add($"{selected.FirstName} {selected.LastName}");
         }
 
+        /// <summary>
+        /// add director to new movie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddDirector_Click(object sender, RoutedEventArgs e)
         {
             if (lbDirectors.SelectedItem == null)
@@ -90,6 +145,11 @@ namespace MovieApp
             director = selected;
         }
 
+        /// <summary>
+        /// add new movis entered by user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSubmitMovie_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -119,32 +179,6 @@ namespace MovieApp
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private bool checkAllBoxesFilled(Panel p)
-        {
-            if (string.IsNullOrEmpty(tbTitle.Text) ||
-                string.IsNullOrEmpty(tbYear.Text) ||
-                string.IsNullOrEmpty(tbRottenScore.Text)||
-                string.IsNullOrEmpty(tbImdbScore.Text))
-            {
-                throw new Exception("All text box must be filled!");
-            }
-            return true;
-        }
-
-        private void cleanForm(Panel p)
-        {
-            foreach (var item in p.Children)
-            {
-                if (item is TextBox)
-                {
-                    TextBox tb = item as TextBox;
-                    if (!string.IsNullOrEmpty(tb.Text))
-                    {
-                        tb.Text = "";
-                    }
-                }
-            }
-        }
+        #endregion
     }
 }

@@ -24,6 +24,7 @@ namespace MovieProjectClasses
             }
         }
 
+        #region functions
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string property)
@@ -31,6 +32,7 @@ namespace MovieProjectClasses
             PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
 
+        
         public void Add(Key key, Value val)
         {
             Dict.Add(key, val);
@@ -53,5 +55,6 @@ namespace MovieProjectClasses
             Dict = null;
             Dict = temp;
         }
+        #endregion
     }
 }

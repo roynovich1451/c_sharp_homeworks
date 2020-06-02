@@ -27,6 +27,13 @@ namespace MovieApp
             InitializeComponent();
             Show();
         }
+
+        #region helpers
+
+        /// <summary>
+        /// create new person from user input
+        /// </summary>
+        /// <returns></returns>
         private bool generatePerson() 
         {
             try
@@ -60,17 +67,34 @@ namespace MovieApp
                 return false;
             }
         }
+
+        /// <summary>
+        /// connect mainwindow's lists with addmoviepersonwindow's lists 
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <param name="act"></param>
+        /// <param name="mov"></param>
         public void connecListBox(ObservableCollection<MoviePerson> dir, ObservableCollection<MoviePerson> act, ObservableDictionary<MyKeyPair, Movie> mov)
         {
             actors = act;
             directors = dir;
         }
+
+        /// <summary>
+        /// gender check
+        /// </summary>
+        /// <returns></returns>
         private myGender checkMaleOrFemale()
         {
             if (cbMale.IsChecked == true) return myGender.male;
             else return myGender.female;
         }
 
+        /// <summary>
+        /// check all tb in XAML filled
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         private bool checkAllBoxesFilled(Panel p)
         {
             if(string.IsNullOrEmpty(tbFirstName.Text) ||
@@ -90,32 +114,10 @@ namespace MovieApp
             return true;
         }
 
-        private void cbMale_Checked(object sender, RoutedEventArgs e)
-        {
-            cbFemale.IsEnabled = false;
-        }
-
-        private void cbFemale_Checked(object sender, RoutedEventArgs e)
-        {
-            cbMale.IsEnabled = false;
-        }
-
-        private void cbMale_Unchecked(object sender, RoutedEventArgs e)
-        {
-            cbFemale.IsEnabled = true;
-        }
-
-        private void cbFemale_Unchecked(object sender, RoutedEventArgs e)
-        {
-            cbMale.IsEnabled = true;
-        }
-
-        private void btnAddMoviePerson_Click(object sender, RoutedEventArgs e)
-        {
-            bool ret = generatePerson();
-            if (ret == true) cleanForm(addMoviePersonMainGrid);
-        }
-
+        /// <summary>
+        /// empty all TB
+        /// </summary>
+        /// <param name="p"></param>
         private void cleanForm(Panel p)
         {
             foreach (var item in p.Children)
@@ -146,5 +148,37 @@ namespace MovieApp
                 cbDirector.IsChecked = false;
             }
         }
+        #endregion
+
+        #region CB_checks
+
+        private void cbMale_Checked(object sender, RoutedEventArgs e)
+        {
+            cbFemale.IsEnabled = false;
+        }
+
+        private void cbFemale_Checked(object sender, RoutedEventArgs e)
+        {
+            cbMale.IsEnabled = false;
+        }
+
+        private void cbMale_Unchecked(object sender, RoutedEventArgs e)
+        {
+            cbFemale.IsEnabled = true;
+        }
+
+        private void cbFemale_Unchecked(object sender, RoutedEventArgs e)
+        {
+            cbMale.IsEnabled = true;
+        }
+        #endregion
+
+        #region clicks
+        private void btnAddMoviePerson_Click(object sender, RoutedEventArgs e)
+        {
+            bool ret = generatePerson();
+            if (ret == true) cleanForm(addMoviePersonMainGrid);
+        }
+        #endregion
     }
 }
