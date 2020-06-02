@@ -58,7 +58,7 @@ namespace MovieApp
                 case "name":
                     foreach (var mov in movies.Dict.Values)
                     {
-                        if (mov.Title.StartsWith(value))
+                        if (mov.Title.ToLower().StartsWith(value.ToLower()))
                         {
                             searchResultsToShow.Add($"{mov.title} {mov.Year}");
                         }
@@ -68,7 +68,7 @@ namespace MovieApp
                     foreach(var mov in movies.Dict.Values)
                     {
                         string dirName = $"{mov.Director.FirstName} {mov.Director.LastName}";
-                        if (dirName.StartsWith(value))
+                        if (dirName.ToLower().StartsWith(value.ToLower()))
                         {
                             searchResultsToShow.Add($"{mov.title} {mov.Year}");
                         }
@@ -79,7 +79,7 @@ namespace MovieApp
                     {
                         foreach(var act in mov.Actors)
                         {
-                            if (act.StartsWith(value))
+                            if (act.ToLower().StartsWith(value.ToLower()))
                             {
                                 searchResultsToShow.Add($"{mov.title} {mov.Year}");
                             }
