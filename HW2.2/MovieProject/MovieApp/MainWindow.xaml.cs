@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using System.Windows.Documents;
 using System.Xml;
 using MovieProjectClasses;
 
@@ -27,10 +25,7 @@ namespace MovieApp
         public MainWindow()
         {
             InitializeComponent();
-            movieActors = new ObservableCollection<MoviePerson>();
-            movieDirectors = new ObservableCollection<MoviePerson>();
-            movies = new ObservableDictionary<MyKeyPair, Movie>();
-            DataContext = movies;
+
             orderAllLists();
         }
 
@@ -162,7 +157,10 @@ namespace MovieApp
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-
+            movieActors = new ObservableCollection<MoviePerson>();
+            movieDirectors = new ObservableCollection<MoviePerson>();
+            movies = new ObservableDictionary<MyKeyPair, Movie>();
+            DataContext = movies;
             if (File.Exists(filePath))
             {
                 using (StreamReader handle = new StreamReader(filePath))
@@ -248,10 +246,10 @@ namespace MovieApp
                     writer.WriteElementString("Year", m.Value.Year.ToString());
                     writer.WriteElementString("RTS", m.Value.RotTomScore.ToString());
                     writer.WriteElementString("IS", m.Value.ImdbScore.ToString());
-                    writer.WriteString("Actors:");
                     foreach (var s in m.Value.Actors)
                     {
                         writer.WriteElementString("Actor", s);
+                        // writer.WriteEndElement();
                     }
                     writer.WriteEndElement();
                 }
@@ -332,7 +330,7 @@ namespace MovieApp
                 reader.ReadEndElement();
             }
 
-            /*
+
             //Read movies
             while (reader.Name != "Movies")
             {
@@ -348,10 +346,10 @@ namespace MovieApp
                 string dir = reader.ReadElementString("Dir");
                 MoviePerson realDirector = findMoviePersonByName(dir);
                 int year = int.Parse(reader.ReadElementString("Year"));
-                int RT = int.Parse(reader.ReadElementString("RT"));
+                int RT = int.Parse(reader.ReadElementString("RTS"));
                 decimal IS = decimal.Parse(reader.ReadElementString("IS"));
                 List<string> actors = new List<string>();
-                while (reader.Name == "Actors")
+                while (reader.Name == "Actor")
                 {
                     actors.Add(reader.ReadElementString("Actor"));
                 }
@@ -360,7 +358,7 @@ namespace MovieApp
                 movies.Add(new MyKeyPair(title, year), m);
                 reader.ReadEndElement();
             }
-            */
+
             reader.Close();
 
         }

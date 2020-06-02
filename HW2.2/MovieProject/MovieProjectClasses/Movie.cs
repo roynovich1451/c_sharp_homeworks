@@ -11,8 +11,6 @@ namespace MovieProjectClasses
     }
     public class Movie : IComparable
     {
-        //TODO:
-        //change titlePattern as expected
         private static string titlePattern = @"^[A-Z0-9]([a-zA-z0-9]|[,.\s]){0,49}$";
         private static string yearPattern = @"^19\d\d|20[01]\d|2020$";
         private static string scorePattern = @"^[0-9](\.\d)?|10$";
@@ -142,12 +140,12 @@ namespace MovieProjectClasses
 
         public override string ToString()
         {
-            string actorString="{";
-            foreach(var name in actors)
+            string actorString = "{";
+            foreach (var name in actors)
             {
                 actorString += $"{name}, ";
             }
-            actorString = actorString.Substring(0, actorString.Length-2);
+            actorString = actorString.Substring(0, actorString.Length - 2);
             actorString += "}";
             return $"{Title}, {Year}, Director: {Director}, Actors: {actorString} IMDB: {ImdbScore}, Rotten Tomatoes: {RotTomScore}";
         }
