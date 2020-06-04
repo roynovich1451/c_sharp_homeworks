@@ -57,7 +57,7 @@ namespace MovieApp
                 string.IsNullOrEmpty(tbRottenScore.Text) ||
                 string.IsNullOrEmpty(tbImdbScore.Text))
             {
-                throw new Exception("All text box must be filled!");
+                throw new Exception("All fields must be filled!");
             }
             return true;
         }
@@ -92,20 +92,20 @@ namespace MovieApp
         {
             if (lbActors.SelectedItem == null)
             {
-                    MessageBox.Show("Must select actor first", "Error",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Must select an actor first", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             MoviePerson selected = lbActors.SelectedItem as MoviePerson;
-            MessageBoxResult res = MessageBox.Show($"Add {selected.FirstName} {selected.LastName} as movie actor?", "Confirm pick",
+            MessageBoxResult res = MessageBox.Show($"Add {selected.FirstName} {selected.LastName} as the movie actor?", "Confirm pick",
                 MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.No)
             {
                 return;
             }
-            if (actors.Count !=0 && actors.Contains(selected.ToString()) == true)
+            if (actors.Count != 0 && actors.Contains(selected.ToString()) == true)
             {
-                MessageBox.Show($"{selected.FirstName} {selected.LastName} already picked", "Error",
+                MessageBox.Show($"{selected.FirstName} {selected.LastName} was already picked", "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -121,12 +121,12 @@ namespace MovieApp
         {
             if (lbDirectors.SelectedItem == null)
             {
-                MessageBox.Show("Must select director first", "Error",
+                MessageBox.Show("Must select a director first", "Error",
                 MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             MoviePerson selected = lbDirectors.SelectedItem as MoviePerson;
-            MessageBoxResult res = MessageBox.Show($"Add {selected.FirstName} {selected.LastName} as movie director?", "Confirm pick",
+            MessageBoxResult res = MessageBox.Show($"Add {selected.FirstName} {selected.LastName} as the movie director?", "Confirm pick",
                 MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.No)
             {
@@ -134,7 +134,7 @@ namespace MovieApp
             }
             if (!string.IsNullOrEmpty(tbDirector.Text))
             {
-                res = MessageBox.Show($"Replace {tbDirector.Text} with {selected.FirstName} {selected.LastName} as movie director?", "Confirm pick",
+                res = MessageBox.Show($"Replace {tbDirector.Text} with {selected.FirstName} {selected.LastName} as the movie director?", "Confirm pick",
                     MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (res == MessageBoxResult.No)
                 {
@@ -156,7 +156,7 @@ namespace MovieApp
             {
                 if (string.IsNullOrEmpty(tbDirector.Text) || actors.Count == 0)
                 {
-                    throw new Exception("Movie must have Director and Actors");
+                    throw new Exception("Movie must have at least one Director and Actor");
                 }
                 if (checkAllBoxesFilled(movieDataGrid))
                 {
@@ -170,7 +170,7 @@ namespace MovieApp
                     movies.Add(new MyKeyPair(temp.Title, temp.Year), temp);
                     cleanForm(movieDataGrid);
                     actors = new List<string>();
-                    movies.OrderDict();
+                    movies.Dict = new Dictionary<MyKeyPair, Movie>(movies.Dict.OrderBy(y => y.Key.Year).ThenBy(t => t.Key.Name));
                 }
                 return;
             }

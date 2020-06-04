@@ -34,13 +34,13 @@ namespace MovieApp
         /// create new person from user input
         /// </summary>
         /// <returns></returns>
-        private bool generatePerson() 
+        private bool generatePerson()
         {
             try
             {
                 if (!checkAllBoxesFilled(addMoviePersonMainGrid))
                 {
-                    throw new Exception("not all text boxes filled!");
+                    throw new Exception("All fields must be filled!");
                 }
                 myGender mg = checkMaleOrFemale();
                 bool dir = cbDirector.IsChecked == true;
@@ -48,7 +48,7 @@ namespace MovieApp
                 MoviePerson temp = new MoviePerson(tbFirstName.Text, tbLastName.Text, mg, tbBirthDate.Text, dir, act);
                 if (directors.Contains(temp) || actors.Contains(temp))
                 {
-                    throw new Exception($"{temp.FirstName} {temp.LastName} added before");
+                    throw new Exception($"{temp.FirstName} {temp.LastName} was added before");
                 }
                 if (dir == true)
                 {
@@ -60,7 +60,7 @@ namespace MovieApp
                 }
 
                 return true;
-            } 
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -97,19 +97,19 @@ namespace MovieApp
         /// <returns></returns>
         private bool checkAllBoxesFilled(Panel p)
         {
-            if(string.IsNullOrEmpty(tbFirstName.Text) ||
+            if (string.IsNullOrEmpty(tbFirstName.Text) ||
                 string.IsNullOrEmpty(tbLastName.Text) ||
                 string.IsNullOrEmpty(tbBirthDate.Text))
             {
-                throw new Exception("All text box must be filled!");
+                throw new Exception("All fields must be filled!");
             }
             if (cbMale.IsChecked == false && cbFemale.IsChecked == false)
             {
-                throw new Exception("Gender must be checked");
+                throw new Exception("Must pick a gender");
             }
             if (cbActor.IsChecked == false && cbDirector.IsChecked == false)
             {
-                throw new Exception("New Person must have role");
+                throw new Exception("New Person must have a role");
             }
             return true;
         }
