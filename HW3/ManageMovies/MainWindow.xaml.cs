@@ -48,19 +48,40 @@ namespace ManageMovies
             addOscarWindow.ShowDialog();
         }
 
-        private void MI_Add_Actor_movie_participate_Click(object sender, RoutedEventArgs e)
+        private void MI_Add_movie_to_actor_Click(object sender, RoutedEventArgs e)
         {
-            
+            var connectWindow = new Connect2ObjectsWindow();
+            connectWindow.ShowDialog();
         }
 
-        private void MI_Add_Direcor_movie_Click(object sender, RoutedEventArgs e)
+        private void MI_Add_movie_to_actress_Click(object sender, RoutedEventArgs e)
         {
-
+            var connectWindow = new Connect2ObjectsWindow();
+            connectWindow.ShowDialog();
         }
 
-        private void MI_Add_Movie_cast_Click(object sender, RoutedEventArgs e)
+        private void MI_Movie_to_director_Click(object sender, RoutedEventArgs e)
         {
+            var connectWindow = new Connect2ObjectsWindow();
+            connectWindow.ShowDialog();
+        }
 
+        private void MI_Actor_to_movie_Click(object sender, RoutedEventArgs e)
+        {
+            var connectWindow = new Connect2ObjectsWindow();
+            connectWindow.ShowDialog();
+        }
+
+        private void MI_Actress_to_movie_Click(object sender, RoutedEventArgs e)
+        {
+            var connectWindow = new Connect2ObjectsWindow();
+            connectWindow.ShowDialog();
+        }
+
+        private void MI_director_to_movie_Click(object sender, RoutedEventArgs e)
+        {
+            var connectWindow = new Connect2ObjectsWindow();
+            connectWindow.ShowDialog();
         }
 
         private void MI_Movie_by_year_Click(object sender, RoutedEventArgs e)
@@ -82,7 +103,5 @@ namespace ManageMovies
         {
 
         }
-
-     
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManageMovies"
         mc:Ignorable="d"
-                ResizeMode="NoResize"
+        ResizeMode="NoResize"
         Title="Add director" Height="300" Width="450">
     <GroupBox Header="Director details" Margin="10" BorderThickness="2">
         <Grid Name="addDirectorMainGrid" Grid.Row="0" Grid.Column="0" Margin="10">

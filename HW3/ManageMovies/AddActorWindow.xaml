@@ -42,10 +42,10 @@
             <Label Content="Birth year:" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="42,0,0,0" />
             <TextBox Name="tbBirthYear" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,15,0,15"/>
             <Label Content="Gender:" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="53,0,0,0" />
-            <StackPanel Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Orientation="Horizontal">
-                <CheckBox Name="cbMale" Grid.Row="1" Grid.Column="2" Content="Male" Padding="10,0,10,10" Checked="cbMale_Checked" Unchecked="cbMale_Unchecked"/>
-                <CheckBox Name="cbFemale" Grid.Row="1" Grid.Column="2" Content="Female" Padding="10,0,0,10" Checked="cbFemale_Checked" Unchecked="cbFemale_Unchecked"/>
-            </StackPanel>
+            <ComboBox  Name="cmbGender" Grid.Row="4" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="1" Margin="0,15,0,15">
+                <ComboBoxItem>Female</ComboBoxItem>
+                <ComboBoxItem>Male</ComboBoxItem>
+            </ComboBox>
             <Button Name="btnAddActor" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,10,10,10" Click="btnAddActor_Click">
 
                 <TextBlock Text="Submit" TextWrapping="Wrap"/>

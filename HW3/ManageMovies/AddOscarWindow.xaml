@@ -40,26 +40,33 @@
             <Label Content="Year:" Grid.Column="1" HorizontalAlignment="Left" Margin="81,0,0,0"/>
             <TextBox Name="tbYear" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,5,0,5"/>
             <Label Content="Best actor:" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="Left" Margin="51,0,0,0"/>
-            <TextBox Name="tbBastActor" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" IsEnabled="False" Margin="0,5,0,5"
-                     Text="Press button 'Pick actor/actress'"/>
-            <Label Content="Best actress:" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="Left" Margin="41,0,0,0"/>
-            <TextBox Name="tbBestActress" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" IsEnabled="False" Margin="0,5,0,5"
-                     Text="Press button 'Pick actor/actress'"/>
+            <ComboBox  Name="cmbBestActor" Grid.Row="1" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5">
+                <ComboBoxItem>Female</ComboBoxItem>
+                <ComboBoxItem>Male</ComboBoxItem>
+            </ComboBox>
+            <Label Content="Best actress:" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="Right"/>
+            <ComboBox  Name="cmbBestActress" Grid.Row="2" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5">
+                <ComboBoxItem>Female</ComboBoxItem>
+                <ComboBoxItem>Male</ComboBoxItem>
+            </ComboBox>
             <Label Content="Best director:" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="36,0,0,0"/>
-            <TextBox Name="tbBestDirector" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" IsEnabled="False" Margin="0,5,0,5"
-                     Text="Press button 'Pick director'"/>
+            <ComboBox  Name="cmbBestDirector" Grid.Row="3" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5">
+                <ComboBoxItem>Female</ComboBoxItem>
+                <ComboBoxItem>Male</ComboBoxItem>
+            </ComboBox>
             <Label Content="Best movie" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="48,0,0,0"/>
-            <TextBox Name="tbBestMovie" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" IsEnabled="False" Margin="0,5,0,5"
-                     Text="Press button 'Pick movie'"/>
-
+            <ComboBox  Name="cmbBestMovie" Grid.Row="4" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5">
+                <ComboBoxItem>Female</ComboBoxItem>
+                <ComboBoxItem>Male</ComboBoxItem>
+            </ComboBox>
             <Button Name="btnBestActor" Grid.Row="8" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="10,0,5,0" Click="btnBestActor_Click">
-                <TextBlock Text="Pick best actor and actress winner" TextWrapping="Wrap"/>
+                <TextBlock Text="Add missing movie" TextWrapping="Wrap"/>
             </Button>
             <Button Name="btnBestDirector" Grid.Row="8" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="2" Margin="5,0,5,0" Click="btnBestDirector_Click">
-                <TextBlock Text="Pick best director winner" TextWrapping="Wrap"/>
+                <TextBlock Text="Add missing director" TextWrapping="Wrap"/>
             </Button>
             <Button Name="btnBestMovie" Grid.Row="8" Grid.Column="3" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="5,0,10,0" Click="btnBestMovie_Click">
-                <TextBlock Text="Pick best movie winner" TextWrapping="Wrap"/>
+                <TextBlock Text="Add missing actor or actress" TextWrapping="Wrap"/>
             </Button>
             <Button Name="btnAddOscar" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Margin="3,10,10,10" Click="btnAddOscar_Click">
                 <TextBlock Text="Submit" TextWrapping="Wrap"/>

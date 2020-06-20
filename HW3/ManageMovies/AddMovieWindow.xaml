@@ -16,10 +16,6 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -37,28 +33,14 @@
                 </Style>
             </Grid.Resources>
             <Label Content="Title:" Grid.Column="0" HorizontalAlignment="right" Margin="37,0,0,0" />
-            <TextBox Name="tbTitle" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,5,0,5"/>
-            <Label Content="Serial:" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="right" Margin="38,0,0,0"/>
-            <TextBox Name="tbSerial" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,5,0,5"/>
-            <Label Content="Year:" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="right" Margin="80,0,0,0"/>
-            <TextBox Name="tbYear" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,5,0,5"/>
-            <Label Content="Country:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
-            <TextBox Name="tbCountry" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,5,0,5"/>
-            <Label Content="IMDB score:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
-            <TextBox Name="tbIMDB" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,5,0,5"/>
-            <Label Content="Director:" Grid.Row="5" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
-            <TextBox Name="tbDirector" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False" Margin="0,5,0,5"
-                     Text="Press 'Add movie's button'"/>
-            <Label Content="Oscar:" Grid.Row="6" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
-            <TextBox Name="tbOscar" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="False" Margin="0,5,0,5"
-                     Text="Press 'Add Oscar'"/>
+            <TextBox Name="tbTitle" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="Year:" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="right" Margin="80,0,0,0"/>
+            <TextBox Name="tbYear" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="Country:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
+            <TextBox Name="tbCountry" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="IMDB score:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
+            <TextBox Name="tbIMDB" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
 
-            <Button Name="btnAddDirector" Grid.Row="8" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="10,0,0,0" Click="btnAddDirector_Click">
-                <TextBlock Text="Add movie's director" TextWrapping="Wrap"/>
-            </Button>
-            <Button Name="btnAddOscar" Grid.Row="8" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="0,0,10,0" Click="btnAddOscar_Click">
-                <TextBlock Text="Add Oscar" TextWrapping="Wrap"/>
-            </Button>
             <Button Name="btnAddMovie" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,10,10,10" Click="btnAddMovie_Click">
                 <TextBlock Text="Submit" TextWrapping="Wrap"/>
             </Button>

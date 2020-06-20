@@ -13,17 +13,16 @@ using System.Windows.Shapes;
 namespace ManageMovies
 {
     /// <summary>
-    /// Interaction logic for AddActorWindow.xaml
+    /// Interaction logic for Connect2ObjectsWindow.xaml
     /// </summary>
-    public partial class AddActorWindow : Window
+    public partial class Connect2ObjectsWindow : Window
     {
-        public AddActorWindow()
+        public Connect2ObjectsWindow()
         {
             InitializeComponent();
         }
 
-
-        private void btnAddActor_Click(object sender, RoutedEventArgs e)
+        private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
 
         }

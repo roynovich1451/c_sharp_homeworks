@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="MainWindow" Height="400" Width="273">
-   <DockPanel>
+    <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Add" Margin="10,0,0,0">
                 <MenuItem Header="_New actor..." Name="MI_Add_New_actor" Click="MI_Add_New_actor_Click"/>
@@ -15,12 +15,19 @@
                 <MenuItem Header="_New movie..."  Name="MI_Add_New_movie" Click="MI_Add_New_movie_Click"/>
                 <MenuItem Header="_Oscar..." 
                           Name="MI_Add_Oscar" Click="MI_Add_Oscar_Click"/>
-                <MenuItem Header="_Actor's movie participate..." 
-                          Name="MI_Add_Actor_movie_participate" Click="MI_Add_Actor_movie_participate_Click"/>
-                <MenuItem Header="_Direcor's movie..." 
-                          Name="MI_Add_Direcor_movie" Click="MI_Add_Direcor_movie_Click"/>
-                <MenuItem Header="_Movie cast..." 
-                          Name="MI_Add_Movie_cast" Click="MI_Add_Movie_cast_Click"/>
+                <MenuItem Header="_Movie to actor..." 
+                          Name="MI_Add_movie_to_actor" Click="MI_Add_movie_to_actor_Click"/>
+                <MenuItem Header="_Movie to Actress..." 
+                          Name="MI_Add_movie_to_actress" Click="MI_Add_movie_to_actress_Click"/>
+                <MenuItem Header="_Movie to director..." 
+                          Name="MI_Movie_to_director" Click="MI_Movie_to_director_Click"/>
+                <MenuItem Header="_Actor to movie..." 
+                          Name="MI_Actor_to_movie" Click="MI_Actor_to_movie_Click"/>
+                <MenuItem Header="_Actress to movie..." 
+                          Name="MI_Actress_to_movie" Click="MI_Actress_to_movie_Click"/>
+                <MenuItem Header="_Director to movie..." 
+                          Name="MI_director_to_movie" Click="MI_director_to_movie_Click"/>
+
             </MenuItem>
 
             <MenuItem Header="_Show">
@@ -40,7 +47,7 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Image Source="/main_window_oscar_pic.jpg" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Left" Width="300"/>
+            <Image Source="/main_window_oscar_pic.jpg" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Left" Width="273"/>
         </Grid>
     </DockPanel>
 
