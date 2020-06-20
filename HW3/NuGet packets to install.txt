@@ -1,0 +1,20 @@
+nuget packets for DB project:
+App
+=========
+1. Microsoft.EntityFrameworkCore.Design
+2. Microsoft.EntityFrameworkCore.SqlServer
+right click on project --> 'edit project file' --> before </Project> add:
+<ItemGroup>
+	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.Dotnet" Version="2.0.0" />
+</ItemGroup>
+
+DBcraeor
+=========
+1.Microsoft.EntityFrameworkCore
+2.Microsoft.EntityFrameworkCore.SqlServer
+
+connect DB and app
+===============
+enter app directory (in windows)
+open cmd
+enter dotnet ef dbcontext scaffold "server=(localdb)\MSSQLLocalDb;database=c:\databases\DBManageMovies;trusted_connection=true" Microsoft.EntityFrameworkCore.SqlServer

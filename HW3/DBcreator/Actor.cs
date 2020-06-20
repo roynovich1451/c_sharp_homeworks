@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DBCreation
 {
-    public enum Gender { Male,Female}
+    public enum Gender { Male, Female }
     public class Actor
     {
         [Key]

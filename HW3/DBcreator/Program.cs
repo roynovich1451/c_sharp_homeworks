@@ -16,10 +16,11 @@ namespace DBCreation
 
         private static async Task Create()
         {
-            using (var context= new MoviesContext()) {
+            using (var context = new MoviesContext())
+            {
                 bool created = await context.Database.EnsureCreatedAsync();
-                Console.WriteLine(created);
-                Console.ReadLine();
+                string creatInfo = created ? "created" : "exists";
+                Console.WriteLine($"database {creatInfo}");
             }
         }
     }

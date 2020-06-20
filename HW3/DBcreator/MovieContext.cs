@@ -10,16 +10,18 @@ namespace DBCreation
 {
     public class MoviesContext : DbContext
     {
-        private const string connectionString = "server=(localdb)\\MSSQLLocalDb;database=c:\\databases\\DBManageMoviesCore_2;trusted_connection=true";
+        private const string connectionString = "server=(localdb)\\MSSQLLocalDb;database=c:\\databases\\DBManageMovies;trusted_connection=true";
 
-        
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) {
-           /*many to many relation - movie to Actor*/
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            /*many to many relation - movie to Actor*/
             modelBuilder.Entity<ActorMovie>()
                 .HasKey(sc => new { sc.ActorId, sc.MovieSerial });
             modelBuilder.Entity<ActorMovie>()
