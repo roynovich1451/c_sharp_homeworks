@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ManageMovies"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="MainWindow" Height="300" Width="300">
+        Title="MainWindow" Height="400" Width="273">
    <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Add" Margin="10,0,0,0">
@@ -40,6 +40,7 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <Image Source="/main_window_oscar_pic.jpg" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Left" Width="300"/>
         </Grid>
     </DockPanel>
 

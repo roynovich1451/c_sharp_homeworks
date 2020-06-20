@@ -17,4 +17,5 @@ connect DB and app
 ===============
 enter app directory (in windows)
 open cmd
-enter dotnet ef dbcontext scaffold "server=(localdb)\MSSQLLocalDb;database=c:\databases\DBManageMovies;trusted_connection=true" Microsoft.EntityFrameworkCore.SqlServer
+enter 
+dotnet ef dbcontext scaffold "server=(localdb)\MSSQLLocalDb;database=c:\databases\DBManageMovies;trusted_connection=true" Microsoft.EntityFrameworkCore.SqlServer

@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="main_window_oscar_pic.jpg" />
+    <None Remove="movies_movie_oscar_icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -15,6 +20,10 @@
   </ItemGroup>
 	<ItemGroup>
 		<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.Dotnet" Version="2.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="main_window_oscar_pic.jpg" />
+	  <Resource Include="movies_movie_oscar_icon.ico" />
 	</ItemGroup>
 
 </Project>

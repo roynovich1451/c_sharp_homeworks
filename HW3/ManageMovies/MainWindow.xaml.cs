@@ -42,10 +42,15 @@ namespace ManageMovies
             var addMovieWindow = new AddMovieWindow();
             addMovieWindow.ShowDialog();
         }
+        private void MI_Add_Oscar_Click(object sender, RoutedEventArgs e)
+        {
+            var addOscarWindow = new AddOscarWindow();
+            addOscarWindow.ShowDialog();
+        }
 
         private void MI_Add_Actor_movie_participate_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void MI_Add_Direcor_movie_Click(object sender, RoutedEventArgs e)
@@ -78,9 +83,6 @@ namespace ManageMovies
 
         }
 
-        private void MI_Add_Oscar_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+     
     }
 }
