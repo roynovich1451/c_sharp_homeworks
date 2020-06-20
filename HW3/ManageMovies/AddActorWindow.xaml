@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:ManageMovies"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="AddActorWindow" Height="450" Width="450">
+        Title="Add actor" Height="450" Width="450">
     <GroupBox Header="Actor details" Margin="10" BorderThickness="2">
-        <Grid Name="addMoviePersonMainGrid" Grid.Row="0" Grid.Column="0" Margin="10">
+        <Grid Name="addActorMainGrid" Grid.Row="0" Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>

@@ -33,12 +33,14 @@ namespace ManageMovies
 
         private void MI_Add_New_director_Click(object sender, RoutedEventArgs e)
         {
-
+            var addDirectorWindow = new AddDirectorWindow();
+            addDirectorWindow.ShowDialog();
         }
 
         private void MI_Add_New_movie_Click(object sender, RoutedEventArgs e)
         {
-
+            var addMovieWindow = new AddMovieWindow();
+            addMovieWindow.ShowDialog();
         }
 
         private void MI_Add_Actor_movie_participate_Click(object sender, RoutedEventArgs e)
