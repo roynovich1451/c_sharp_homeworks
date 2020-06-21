@@ -16,6 +16,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -32,14 +33,16 @@
                     <Setter Property="Margin" Value="0,15"/>
                 </Style>
             </Grid.Resources>
-            <Label Content="Title:" Grid.Column="0" HorizontalAlignment="right" Margin="37,0,0,0" />
-            <TextBox Name="tbTitle" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
-            <Label Content="Year:" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="right" Margin="80,0,0,0"/>
-            <TextBox Name="tbYear" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
-            <Label Content="Country:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
-            <TextBox Name="tbCountry" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
-            <Label Content="IMDB score:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
-            <TextBox Name="tbIMDB" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="Serial:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="right" Margin="37,0,0,0" />
+            <TextBox Name="tbSerial" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="Title:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="right" Margin="37,0,0,0" />
+            <TextBox Name="tbTitle" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="Year:" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="right" Margin="80,0,0,0"/>
+            <TextBox Name="tbYear" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="Country:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
+            <TextBox Name="tbCountry" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="IMDB score:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
+            <TextBox Name="tbIMDB" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,15,0,15"/>
 
             <Button Name="btnAddMovie" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,10,10,10" Click="btnAddMovie_Click">
                 <TextBlock Text="Submit" TextWrapping="Wrap"/>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace ManageMovies
 {
+    //TODO have regex check for Properties
     public partial class Director
     {
         public Director()

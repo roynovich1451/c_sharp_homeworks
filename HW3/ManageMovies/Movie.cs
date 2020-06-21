@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 namespace ManageMovies
 {
+    //TODO have regex check for Properties
     public partial class Movie
     {
         public Movie()
         {
-            ActorMovie = new HashSet<ActorMovie>();
+            ActorMovies = new HashSet<ActorMovie>();
         }
 
         public string MovieSerial { get; set; }
@@ -19,6 +20,6 @@ namespace ManageMovies
 
         public virtual Director Director { get; set; }
         public virtual Oscar Oscars { get; set; }
-        public virtual ICollection<ActorMovie> ActorMovie { get; set; }
+        public virtual ICollection<ActorMovie> ActorMovies { get; set; }
     }
 }

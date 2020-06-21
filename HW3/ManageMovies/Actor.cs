@@ -1,15 +1,17 @@
-﻿using System;
+﻿using Microsoft.Extensions.Primitives;
+using System;
 using System.Collections.Generic;
 
 namespace ManageMovies
 {
+    //TODO have regex check for Properties
     public partial class Actor
     {
         public Actor()
         {
-            ActorMovie = new HashSet<ActorMovie>();
-            OscarsBestActor = new HashSet<Oscar>();
-            OscarsBestActress = new HashSet<Oscar>();
+            ActorMovies = new HashSet<ActorMovie>();
+            OscarsBestActors = new HashSet<Oscar>();
+            OscarsBestActresses = new HashSet<Oscar>();
         }
 
         public string Id { get; set; }
@@ -18,8 +20,8 @@ namespace ManageMovies
         public int YearBorn { get; set; }
         public int Gender { get; set; }
 
-        public virtual ICollection<ActorMovie> ActorMovie { get; set; }
-        public virtual ICollection<Oscar> OscarsBestActor { get; set; }
-        public virtual ICollection<Oscar> OscarsBestActress { get; set; }
+        public virtual ICollection<ActorMovie> ActorMovies { get; set; }
+        public virtual ICollection<Oscar> OscarsBestActors { get; set; }
+        public virtual ICollection<Oscar> OscarsBestActresses { get; set; }
     }
 }

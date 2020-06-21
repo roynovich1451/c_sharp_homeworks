@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ManageMovies
 {
-    public partial class cdatabasesDBManageMoviesContext : DbContext
+    public partial class dbContext : DbContext
     {
-        public cdatabasesDBManageMoviesContext()
+        public dbContext()
         {
         }
 
-        public cdatabasesDBManageMoviesContext(DbContextOptions<cdatabasesDBManageMoviesContext> options)
+        public dbContext(DbContextOptions<dbContext> options)
             : base(options)
         {
         }
@@ -39,11 +39,11 @@ namespace ManageMovies
                 entity.HasIndex(e => e.MovieSerial);
 
                 entity.HasOne(d => d.Actor)
-                    .WithMany(p => p.ActorMovie)
+                    .WithMany(p => p.ActorMovies)
                     .HasForeignKey(d => d.ActorId);
 
                 entity.HasOne(d => d.MovieSerialNavigation)
-                    .WithMany(p => p.ActorMovie)
+                    .WithMany(p => p.ActorMovies)
                     .HasForeignKey(d => d.MovieSerial);
             });
 
@@ -77,11 +77,11 @@ namespace ManageMovies
                 entity.Property(e => e.Year).ValueGeneratedNever();
 
                 entity.HasOne(d => d.BestActor)
-                    .WithMany(p => p.OscarsBestActor)
+                    .WithMany(p => p.OscarsBestActors)
                     .HasForeignKey(d => d.BestActorId);
 
                 entity.HasOne(d => d.BestActress)
-                    .WithMany(p => p.OscarsBestActress)
+                    .WithMany(p => p.OscarsBestActresses)
                     .HasForeignKey(d => d.BestActressId);
 
                 entity.HasOne(d => d.BestDirector)

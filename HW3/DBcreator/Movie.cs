@@ -11,6 +11,7 @@ namespace DBCreation
     public class Movie
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string MovieSerial { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }

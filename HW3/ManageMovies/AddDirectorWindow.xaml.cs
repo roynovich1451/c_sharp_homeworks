@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -24,7 +25,54 @@ namespace ManageMovies
 
         private void btnAddDirector_Click(object sender, RoutedEventArgs e)
         {
+            if (!AllTextboxesFilled())
+            {
+                MessageBox.Show("All text box must be filled!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            try
+            {
+                Director newDirector = new Director
+                {
+                    FirstName = tbFirstName.Text.Trim(),
+                    LastName = tbLastName.Text.Trim(),
+                    Id = tbDirectorID.Text.Trim(),
+                };
+                using (var ctx = new dbContext())
+                {
+                    ctx.Directors.Add(newDirector);
+                    ctx.SaveChanges();
+                }
+                MessageBox.Show($"{newDirector.FirstName} {newDirector.LastName} successfully updated in DB", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                emptyTextBoxes();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Data is NOT in the correct format", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (DbUpdateException ex)
+            {
+                MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
+        private void emptyTextBoxes()
+        {
+            tbDirectorID.Text = "";
+            tbFirstName.Text = "";
+            tbLastName.Text = "";
+        }
+
+        private bool AllTextboxesFilled()
+        {
+            if (string.IsNullOrEmpty(tbDirectorID.Text)) return false;
+            if (string.IsNullOrEmpty(tbFirstName.Text)) return false;
+            if (string.IsNullOrEmpty(tbLastName.Text)) return false;
+            return true;
+        }
     }
+
 }

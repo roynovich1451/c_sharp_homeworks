@@ -19,7 +19,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="18*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="8*"/>
                 <ColumnDefinition Width="115*"/>
                 <ColumnDefinition Width="265*"/>
             </Grid.ColumnDefinitions>
@@ -33,20 +34,20 @@
                     <Setter Property="Margin" Value="0,15"/>
                 </Style>
             </Grid.Resources>
-            <Label Content="First name:" Grid.Column="1" HorizontalAlignment="Left" Margin="37,0,0,0" />
-            <TextBox Name="tbFirstName" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,15,0,15"/>
-            <Label Content="Last name:" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="Left" Margin="38,0,0,0"/>
-            <TextBox Name="tbLastName" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,15,0,15"/>
-            <Label Content="ID:" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="Left" Margin="80,0,0,0"/>
-            <TextBox Name="tbActorID" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,15,0,15"/>
-            <Label Content="Birth year:" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="42,0,0,0" />
-            <TextBox Name="tbBirthYear" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,15,0,15"/>
-            <Label Content="Gender:" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="53,0,0,0" />
-            <ComboBox  Name="cmbGender" Grid.Row="4" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="1" Margin="0,15,0,15">
+            <Label Content="First name:" Grid.Column="2" HorizontalAlignment="Left" Margin="37,0,0,0" />
+            <TextBox Name="tbFirstName" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="Last name:" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="Left" Margin="38,0,0,0"/>
+            <TextBox Name="tbLastName" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="ID:" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="Left" Margin="80,0,0,0"/>
+            <TextBox Name="tbActorID" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="Birth year:" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" Margin="42,0,0,0" />
+            <TextBox Name="tbBirthYear" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,15,0,15"/>
+            <Label Content="Gender:" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Margin="53,0,0,0" />
+            <ComboBox  Name="cmbGender" Grid.Row="4" Grid.Column="3" IsEnabled="True" Grid.ColumnSpan="1" Margin="0,15,0,15">
                 <ComboBoxItem>Female</ComboBoxItem>
                 <ComboBoxItem>Male</ComboBoxItem>
             </ComboBox>
-            <Button Name="btnAddActor" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,10,10,10" Click="btnAddActor_Click">
+            <Button Name="btnAddActor" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,10,10,10" Click="btnAddActor_Click">
 
                 <TextBlock Text="Submit" TextWrapping="Wrap"/>
             </Button>

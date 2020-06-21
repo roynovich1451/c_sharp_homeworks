@@ -11,7 +11,7 @@ namespace DBCreation
     public class Director
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

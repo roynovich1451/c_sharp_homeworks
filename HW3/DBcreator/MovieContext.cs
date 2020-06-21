@@ -10,7 +10,7 @@ namespace DBCreation
 {
     public class MoviesContext : DbContext
     {
-        private const string connectionString = "server=(localdb)\\MSSQLLocalDb;database=c:\\databases\\DBManageMovies;trusted_connection=true";
+        private const string connectionString = "server=(localdb)\\MSSQLLocalDb;database=c:\\databases\\DBManageMovie;trusted_connection=true";
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
