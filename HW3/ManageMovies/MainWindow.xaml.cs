@@ -86,7 +86,8 @@ namespace ManageMovies
 
         private void MI_Movie_by_year_Click(object sender, RoutedEventArgs e)
         {
-
+            var SearchWIndow = new SearchMovieByYearWindow();
+            SearchWIndow.ShowDialog();
         }
 
         private void MI_Actors_shared_movie_Click(object sender, RoutedEventArgs e)
