@@ -30,10 +30,10 @@
                     <Setter Property="Margin" Value="0,15"/>
                 </Style>
             </Grid.Resources>
-        <GroupBox Header="Object 1" Margin="10" BorderThickness="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2">
+        <GroupBox Name="gbObj1"  Header="Object 1" Margin="10" BorderThickness="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2">
             <ListBox Name="lbObj1"/>
         </GroupBox>
-        <GroupBox Header="Object 2" Margin="10" BorderThickness="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2">
+        <GroupBox Name="gbObj2"  Header="Object 2" Margin="10" BorderThickness="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2">
             <ListBox Name="lbObj2"/>
         </GroupBox>
         <Button Name="btnConnect" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="4,10,10,10" Click="btnConnect_Click">

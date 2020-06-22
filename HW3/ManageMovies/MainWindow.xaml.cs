@@ -50,37 +50,37 @@ namespace ManageMovies
 
         private void MI_Add_movie_to_actor_Click(object sender, RoutedEventArgs e)
         {
-            var connectWindow = new Connect2ObjectsWindow();
+            var connectWindow = new Connect2ObjectsWindow("Movie", "Actor");
             connectWindow.ShowDialog();
         }
 
         private void MI_Add_movie_to_actress_Click(object sender, RoutedEventArgs e)
         {
-            var connectWindow = new Connect2ObjectsWindow();
+            var connectWindow = new Connect2ObjectsWindow("Movie", "Actress");
             connectWindow.ShowDialog();
         }
 
         private void MI_Movie_to_director_Click(object sender, RoutedEventArgs e)
         {
-            var connectWindow = new Connect2ObjectsWindow();
+            var connectWindow = new Connect2ObjectsWindow("Movie", "Director");
             connectWindow.ShowDialog();
         }
 
         private void MI_Actor_to_movie_Click(object sender, RoutedEventArgs e)
         {
-            var connectWindow = new Connect2ObjectsWindow();
+            var connectWindow = new Connect2ObjectsWindow("Actor", "Movie");
             connectWindow.ShowDialog();
         }
 
         private void MI_Actress_to_movie_Click(object sender, RoutedEventArgs e)
         {
-            var connectWindow = new Connect2ObjectsWindow();
+            var connectWindow = new Connect2ObjectsWindow("Actress", "Movie");
             connectWindow.ShowDialog();
         }
 
         private void MI_director_to_movie_Click(object sender, RoutedEventArgs e)
         {
-            var connectWindow = new Connect2ObjectsWindow();
+            var connectWindow = new Connect2ObjectsWindow("Director", "Movie");
             connectWindow.ShowDialog();
         }
 

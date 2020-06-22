@@ -38,7 +38,7 @@ namespace ManageMovies
                     LastName = tbLastName.Text.Trim(),
                     Id = tbActorID.Text.Trim(),
                     YearBorn = int.Parse(tbBirthYear.Text.Trim()),
-                    Gender = cmbGender.SelectedIndex == 0 ? 0 : 1
+                    Gender = cmbGender.SelectedIndex,
                 };
                 using (var ctx = new dbContext())
                 {
@@ -54,7 +54,14 @@ namespace ManageMovies
             }
             catch (DbUpdateException ex)
             {
-                MessageBox.Show(ex.Message+", Iner: "+ ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (ex.InnerException.Message.Contains("duplicate key"))
+                {
+                    MessageBox.Show($"Actor Id already in use", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             catch (Exception ex)
             {

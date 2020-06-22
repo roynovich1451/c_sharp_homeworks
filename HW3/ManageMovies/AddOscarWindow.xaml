@@ -38,27 +38,21 @@
                 </Style>
             </Grid.Resources>
             <Label Content="Year:" Grid.Column="1" HorizontalAlignment="Left" Margin="81,0,0,0"/>
-            <TextBox Name="tbYear" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,5,0,5"/>
+            <TextBox Name="tbYear" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="True" Margin="0,5,0,5" Text="Enetr year and press"/>
+            <Button Name="btnSetYear" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="1" Margin="5,0,5,0" Click="btnSetYear_Click" Content="Set oscar year"/>
+
             <Label Content="Best actor:" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="Left" Margin="51,0,0,0"/>
-            <ComboBox  Name="cmbBestActor" Grid.Row="1" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5">
-                <ComboBoxItem>Female</ComboBoxItem>
-                <ComboBoxItem>Male</ComboBoxItem>
-            </ComboBox>
+            <ComboBox  Name="cmbBestActor" Grid.Row="1" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5" Visibility="Hidden"/>
+
             <Label Content="Best actress:" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="Right"/>
-            <ComboBox  Name="cmbBestActress" Grid.Row="2" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5">
-                <ComboBoxItem>Female</ComboBoxItem>
-                <ComboBoxItem>Male</ComboBoxItem>
-            </ComboBox>
+            <ComboBox  Name="cmbBestActress" Grid.Row="2" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5" Visibility="Hidden"/>
+
             <Label Content="Best director:" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="36,0,0,0"/>
-            <ComboBox  Name="cmbBestDirector" Grid.Row="3" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5">
-                <ComboBoxItem>Female</ComboBoxItem>
-                <ComboBoxItem>Male</ComboBoxItem>
-            </ComboBox>
+            <ComboBox  Name="cmbBestDirector" Grid.Row="3" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5" Visibility="Hidden"/>
+
             <Label Content="Best movie" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="48,0,0,0"/>
-            <ComboBox  Name="cmbBestMovie" Grid.Row="4" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5">
-                <ComboBoxItem>Female</ComboBoxItem>
-                <ComboBoxItem>Male</ComboBoxItem>
-            </ComboBox>
+            <ComboBox  Name="cmbBestMovie" Grid.Row="4" Grid.Column="2" IsEnabled="True" Grid.ColumnSpan="2" Margin="0,5,0,5" Visibility="Hidden"/>
+
             <Button Name="btnBestActor" Grid.Row="8" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="10,0,5,0" Click="btnBestActor_Click">
                 <TextBlock Text="Add missing movie" TextWrapping="Wrap"/>
             </Button>

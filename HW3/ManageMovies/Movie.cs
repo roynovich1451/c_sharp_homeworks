@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace ManageMovies
 {
@@ -21,5 +22,9 @@ namespace ManageMovies
         public virtual Director Director { get; set; }
         public virtual Oscar Oscars { get; set; }
         public virtual ICollection<ActorMovie> ActorMovies { get; set; }
+        public override string ToString()
+        {
+            return $"{Title}, {Year}";
+        }
     }
 }
