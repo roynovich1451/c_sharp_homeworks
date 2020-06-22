@@ -92,17 +92,19 @@ namespace ManageMovies
 
         private void MI_Actors_shared_movie_Click(object sender, RoutedEventArgs e)
         {
-
+            var collborationWindow = new CollaborationMovieWindow();
+            collborationWindow.ShowDialog();
         }
 
         private void MI_Oscar_winner_Click(object sender, RoutedEventArgs e)
         {
-
+            var searchWinner = new OscarWinnerInYear();
+            searchWinner.ShowDialog();
         }
 
         private void MI_Movie_datails_Click(object sender, RoutedEventArgs e)
         {
-
+     
         }
     }
 }

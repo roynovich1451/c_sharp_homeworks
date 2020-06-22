@@ -110,12 +110,5 @@ namespace ManageMovies
                 !string.IsNullOrEmpty(tbToYear.Text.Trim())) return 3; //from-to searh
             else return 4; //search all
         }
-
-        private bool AllTBEmpty()
-        {
-            return string.IsNullOrEmpty(tbFromYear.Text.Trim()) &&
-                string.IsNullOrEmpty(tbInYear.Text.Trim()) &&
-                string.IsNullOrEmpty(tbToYear.Text.Trim());
-        }
     }
 }
