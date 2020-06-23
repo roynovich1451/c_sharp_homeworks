@@ -46,6 +46,7 @@ namespace ManageMovies
         {
             var addOscarWindow = new AddOscarWindow();
             addOscarWindow.ShowDialog();
+
         }
 
         private void MI_Add_movie_to_actor_Click(object sender, RoutedEventArgs e)
@@ -95,7 +96,7 @@ namespace ManageMovies
             var collborationWindow = new CollaborationMovieWindow();
             if (collborationWindow.list.Count != 0)
             {
-            collborationWindow.ShowDialog();
+                collborationWindow.ShowDialog();
             }
             else
             {
@@ -119,7 +120,8 @@ namespace ManageMovies
             if (movieDetailsWindow.moviesInDB.Count != 0)
             {
                 movieDetailsWindow.ShowDialog();
-            }else
+            }
+            else
             {
                 MessageBox.Show("No Movies found in DB", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             }

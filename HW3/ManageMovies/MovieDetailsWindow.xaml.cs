@@ -17,6 +17,7 @@ namespace ManageMovies
     /// <summary>
     /// Interaction logic for MovieDetailsWindow.xaml
     /// </summary>
+    /// 
     public partial class MovieDetailsWindow : Window
     {
         public List<Movie> moviesInDB;

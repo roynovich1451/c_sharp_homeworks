@@ -40,13 +40,16 @@ namespace ManageMovies
                     YearBorn = int.Parse(tbBirthYear.Text.Trim()),
                     Gender = cmbGender.SelectedIndex,
                 };
-                using (var ctx = new dbContext())
+                if (verifynewActor(newActor))
                 {
-                    ctx.Actors.Add(newActor);
-                    ctx.SaveChanges();
+                    using (var ctx = new dbContext())
+                    {
+                        ctx.Actors.Add(newActor);
+                        ctx.SaveChanges();
+                    }
+                    MessageBox.Show($"{newActor.FirstName} {newActor.LastName} successfully updated in DB", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    emptyTextBoxes();
                 }
-                MessageBox.Show($"{newActor.FirstName} {newActor.LastName} successfully updated in DB", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                emptyTextBoxes();
             }
             catch (FormatException)
             {
@@ -69,6 +72,11 @@ namespace ManageMovies
             }
         }
 
+        public bool verifynewActor(Actor newActor)
+        {
+            return newActor.Id != null && newActor.FirstName != null &&
+                newActor.LastName != null && newActor.YearBorn != -1; 
+        }
         private void emptyTextBoxes()
         {
             tbActorID.Text = "";

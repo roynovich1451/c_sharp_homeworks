@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManageMovies"
+        Icon="/searchInDBICon.ico"
         mc:Ignorable="d"
        ResizeMode="NoResize"
         Title="Movie details" Height="500" Width="450">
@@ -41,17 +42,17 @@
             <TextBlock Text="Watch details" TextWrapping="Wrap"/>
         </Button>
         <Label Content="Serial:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="right" Margin="37,0,0,0" />
-        <TextBox Name="tbSerial" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <TextBox Name="tbSerial" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False" Margin="0,8,30,8"/>
         <Label Content="Title:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="right" Margin="37,0,0,0" />
-        <TextBox Name="tbTitle" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <TextBox Name="tbTitle" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False" Margin="0,8,30,8"/>
         <Label Content="Year:" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="right" Margin="80,0,0,0"/>
-        <TextBox Name="tbYear" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <TextBox Name="tbYear" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False" Margin="0,8,30,8"/>
         <Label Content="Country:" Grid.Row="6" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
-        <TextBox Name="tbCountry" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <TextBox Name="tbCountry" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False" Margin="0,8,30,8"/>
         <Label Content="IMDB score:" Grid.Row="7" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
-        <TextBox Name="tbIMDB" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <TextBox Name="tbIMDB" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False" Margin="0,8,30,8"/>
         <Label Content="Director:" Grid.Row="8" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
-        <TextBox Name="tbDirector" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <TextBox Name="tbDirector" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False" Margin="0,8,30,8"/>
         <Label Content="Actors:" Grid.Row="9" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
         <ListBox Name="lbActors" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,8,30,8"/>
 

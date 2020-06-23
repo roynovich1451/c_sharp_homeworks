@@ -39,13 +39,16 @@ namespace ManageMovies
                     Year = int.Parse(tbYear.Text.Trim()),
                     ImdbScore = decimal.Parse(tbIMDB.Text.Trim())
                 };
-                using (var ctx = new dbContext())
+                if (verifyNewMovie(newMovie))
                 {
-                    ctx.Movies.Add(newMovie);
-                    ctx.SaveChanges();
+                    using (var ctx = new dbContext())
+                    {
+                        ctx.Movies.Add(newMovie);
+                        ctx.SaveChanges();
+                    }
+                    MessageBox.Show($"{newMovie.Title}, {newMovie.Year} successfully updated in DB", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    emptyTextBoxes();
                 }
-                MessageBox.Show($"{newMovie.Title}, {newMovie.Year} successfully updated in DB", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                emptyTextBoxes();
             }
             catch (FormatException)
             {
@@ -62,11 +65,21 @@ namespace ManageMovies
                     MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+        }
+
+        public bool verifyNewMovie(Movie newMovie)
+        {
+            return newMovie.MovieSerial != null && newMovie.Year != -1 && 
+                    newMovie.Country != null && newMovie.ImdbScore != -1;
         }
         private void emptyTextBoxes()
         {

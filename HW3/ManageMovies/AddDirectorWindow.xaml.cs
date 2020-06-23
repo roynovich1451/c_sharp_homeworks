@@ -37,13 +37,16 @@ namespace ManageMovies
                     LastName = tbLastName.Text.Trim(),
                     Id = tbDirectorID.Text.Trim(),
                 };
-                using (var ctx = new dbContext())
+                if (newDirector.Id != null && newDirector.FirstName != null && newDirector.LastName != null)
                 {
-                    ctx.Directors.Add(newDirector);
-                    ctx.SaveChanges();
+                    using (var ctx = new dbContext())
+                    {
+                        ctx.Directors.Add(newDirector);
+                        ctx.SaveChanges();
+                    }
+                    MessageBox.Show($"{newDirector.FirstName} {newDirector.LastName} successfully updated in DB", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    emptyTextBoxes();
                 }
-                MessageBox.Show($"{newDirector.FirstName} {newDirector.LastName} successfully updated in DB", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                emptyTextBoxes();
             }
             catch (FormatException)
             {

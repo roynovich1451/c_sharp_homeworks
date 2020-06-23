@@ -34,11 +34,11 @@ namespace ManageMovies
                     cmbSecondPar.ItemsSource = list;
                 }
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 MessageBox.Show($"No data found in DB about asked year", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 MessageBox.Show("Wrong string format entered, only numbers allowed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -70,8 +70,6 @@ namespace ManageMovies
                 }
                 using (var ctx = new dbContext())
                 {
-                    //TODO continue from here
-                    //query need to be changed
                     var movieList = (from fam in ctx.ActorMovie
                                       where fam.ActorId == firstActor.Id
                                       join sam in ctx.ActorMovie

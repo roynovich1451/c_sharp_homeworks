@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="addToDBIcon.ico" />
+    <None Remove="connectObjIcon.ico" />
+    <None Remove="mainWindIcon.ico" />
     <None Remove="main_window_oscar_pic.jpg" />
     <None Remove="movies_movie_oscar_icon.ico" />
+    <None Remove="searchInDBICon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,8 +26,12 @@
 		<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.Dotnet" Version="2.0.0" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Resource Include="addToDBIcon.ico" />
+	  <Resource Include="connectObjIcon.ico" />
+	  <Resource Include="mainWindIcon.ico" />
 	  <Resource Include="main_window_oscar_pic.jpg" />
 	  <Resource Include="movies_movie_oscar_icon.ico" />
+	  <Resource Include="searchInDBICon.ico" />
 	</ItemGroup>
 
 </Project>

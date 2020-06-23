@@ -18,8 +18,6 @@ namespace ManageMovies
     /// Interaction logic for AddOscarWindow.xaml
     /// </summary>
     /// 
-    //TODO: need more work
-    //TODO: need to change behavior after save to DB
     public partial class AddOscarWindow : Window
     {
         int oscarYear = -1;
@@ -47,6 +45,7 @@ namespace ManageMovies
         {
             var addMovieWindow = new AddMovieWindow();
             addMovieWindow.ShowDialog();
+            updateComboBoxes();
         }
 
         private void btnAddOscar_Click(object sender, RoutedEventArgs e)
@@ -117,12 +116,7 @@ namespace ManageMovies
                 string buttonContent = btnSetYear.Content.ToString();
                 if (buttonContent.Equals("Set oscar year"))
                 {
-                    oscarYear = int.Parse(tbYear.Text.Trim());
-                    if (oscarYear > 2020 || oscarYear < 1950)
-                    {
-                        MessageBox.Show("Oscar year must be in years 1950-2020", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
+                    oscarYear = int.Parse(cmbYear.Text.Trim());
                     using (var ctx = new dbContext())
                     {
                         var allYearMovies = (from m in ctx.Movies
@@ -134,7 +128,7 @@ namespace ManageMovies
                                 "Please add movie for year or pick diffrent one.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
-                        tbYear.IsEnabled = false;
+                        cmbYear.IsEnabled = false;
                         btnSetYear.Content = "Change year";
                         cmbBestMovie.ItemsSource = allYearMovies;
                         cmbBestActor.Visibility = Visibility.Visible;
@@ -145,19 +139,13 @@ namespace ManageMovies
                 }
                 else
                 {
-                    btnSetYear.Content = "Set oscar year";
-                    tbYear.IsEnabled = true;
                     emptyTextBoxes();
-                    tbYear.Text = "Enetr year and press";
-                    cmbBestActor.Visibility = Visibility.Hidden;
-                    cmbBestActress.Visibility = Visibility.Hidden;
-                    cmbBestDirector.Visibility = Visibility.Hidden;
-                    cmbBestMovie.Visibility = Visibility.Hidden;
+
                 }
             }
             catch (FormatException)
             {
-                MessageBox.Show("Oscar year must be in years 1950-2020", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Must select year from comboBox", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (DbUpdateException ex)
             {
@@ -168,6 +156,8 @@ namespace ManageMovies
                 MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+
         #region helpers
         public void updateComboBoxes()
         {
@@ -175,6 +165,8 @@ namespace ManageMovies
             {
                 using (var ctx = new dbContext())
                 {
+                    cmbYear.ItemsSource = (from m in ctx.Movies
+                                           select m.Year).ToList().Distinct().ToList();
                     cmbBestActor.ItemsSource = (from a in ctx.Actors
                                                 where a.Gender == 1
                                                 select a).ToList();
@@ -212,18 +204,23 @@ namespace ManageMovies
                 cmbBestActress.SelectedItem == null ||
                 cmbBestDirector.SelectedItem == null ||
                 cmbBestMovie.SelectedItem == null ||
-                string.IsNullOrEmpty(tbYear.Text);
+                string.IsNullOrEmpty(cmbYear.Text);
         }
 
         private void emptyTextBoxes()
         {
-            cmbBestActor.SelectedItem = -1;
-            cmbBestActress.SelectedItem = -1;
-            cmbBestDirector.SelectedItem = -1;
-            cmbBestMovie.SelectedItem = -1;
-            tbYear.Text = "";
-            oscarYear = -1;
+            btnSetYear.Content = "Set oscar year";
+            cmbYear.IsEnabled = true;
+            cmbBestActor.Visibility = Visibility.Hidden;
+            cmbBestActress.Visibility = Visibility.Hidden;
+            cmbBestDirector.Visibility = Visibility.Hidden;
             cmbBestMovie.Visibility = Visibility.Hidden;
+            cmbBestActor.SelectedIndex = -1;
+            cmbBestActress.SelectedIndex = -1;
+            cmbBestDirector.SelectedIndex = -1;
+            cmbBestMovie.SelectedIndex = -1;
+            cmbYear.SelectedIndex = -1;
+            oscarYear = -1;
         }
         #endregion
     }

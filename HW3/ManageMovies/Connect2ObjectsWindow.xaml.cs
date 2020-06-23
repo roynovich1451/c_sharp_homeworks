@@ -18,8 +18,6 @@ namespace ManageMovies
     /// <summary>
     /// Interaction logic for Connect2ObjectsWindow.xaml
     /// </summary>
-    /// 
-
     public partial class Connect2ObjectsWindow : Window
     {
         private string type1;
@@ -145,7 +143,7 @@ namespace ManageMovies
                                 case "Actress":
                                     selectedMovie = lbObj1.SelectedItem as Movie;
                                     selectedActor = lbObj2.SelectedItem as Actor;
-                                    handleMovieDirector(selectedDirector, selectedMovie);
+                                handleMovieActor(selectedActor, selectedMovie);
                                 break;
                             case "Director":
                                 selectedMovie = lbObj1.SelectedItem as Movie;

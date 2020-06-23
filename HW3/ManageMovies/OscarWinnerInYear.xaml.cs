@@ -36,11 +36,11 @@ namespace ManageMovies
                     cmbYear.ItemsSource = yearList;
                 }
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 MessageBox.Show($"No data found in DB about asked year", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 MessageBox.Show("Wrong string format entered, only numbers allowed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -52,9 +52,6 @@ namespace ManageMovies
             {
                 MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-
-
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -64,6 +61,7 @@ namespace ManageMovies
                 if (cmbYear.SelectedIndex == -1)
                 {
                     MessageBox.Show($"Must select year", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
                 }
                 int winnerInYear = yearList[cmbYear.SelectedIndex];
                 using (var ctx = new dbContext())
@@ -74,11 +72,11 @@ namespace ManageMovies
                                        select o.MovieSerialNavigation.Title).First().ToString();
                 }
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 MessageBox.Show($"No data found in DB about asked year", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 MessageBox.Show("Wrong string format entered, only numbers allowed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
