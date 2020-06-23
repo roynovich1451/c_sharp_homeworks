@@ -93,18 +93,36 @@ namespace ManageMovies
         private void MI_Actors_shared_movie_Click(object sender, RoutedEventArgs e)
         {
             var collborationWindow = new CollaborationMovieWindow();
+            if (collborationWindow.list.Count != 0)
+            {
             collborationWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No Actors found in DB", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void MI_Oscar_winner_Click(object sender, RoutedEventArgs e)
         {
             var searchWinner = new OscarWinnerInYear();
-            searchWinner.ShowDialog();
+            if (searchWinner.yearList.Count != 0)
+            {
+                searchWinner.ShowDialog();
+            }
+
         }
 
         private void MI_Movie_datails_Click(object sender, RoutedEventArgs e)
         {
-     
+            var movieDetailsWindow = new MovieDetailsWindow();
+            if (movieDetailsWindow.moviesInDB.Count != 0)
+            {
+                movieDetailsWindow.ShowDialog();
+            }else
+            {
+                MessageBox.Show("No Movies found in DB", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 namespace ManageMovies
 {
@@ -19,6 +20,7 @@ namespace ManageMovies
     /// </summary>
     public partial class CollaborationMovieWindow : Window
     {
+        public List<Actor> list;
         public CollaborationMovieWindow()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace ManageMovies
             {
                 using (var ctx = new dbContext())
                 {
-                    var list = (from a in ctx.Actors
+                    list = (from a in ctx.Actors
                                 select a).ToList();
                     cmbFirstPar.ItemsSource = list;
                     cmbSecondPar.ItemsSource = list;
@@ -70,14 +72,20 @@ namespace ManageMovies
                 {
                     //TODO continue from here
                     //query need to be changed
-                    lbSearchResult.ItemsSource = (from fam in ctx.ActorMovie
-                                                  where fam.ActorId == firstActor.Id
-                                                  join sam in ctx.ActorMovie
-                                                  on fam.MovieSerial equals sam.MovieSerial
-                                                  join m in ctx.Movies
-                                                  on fam.MovieSerial equals m.MovieSerial
-                                                  select m
-                                                  );
+                    var movieList = (from fam in ctx.ActorMovie
+                                      where fam.ActorId == firstActor.Id
+                                      join sam in ctx.ActorMovie
+                                      on fam.MovieSerial equals sam.MovieSerial
+                                      where sam.ActorId == secondActor.Id
+                                      select sam.MovieSerialNavigation.Title).ToList();
+                    if (movieList.Count != 0) {
+                        lbSearchResult.ItemsSource = movieList;
+                    } else
+                    {
+                        lbSearchResult.ItemsSource = null;
+                        MessageBox.Show($"Selected actors never collaborated", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    
                 }
 
             }

@@ -17,57 +17,30 @@ namespace ManageMovies
     /// <summary>
     /// Interaction logic for AddOscarWindow.xaml
     /// </summary>
+    /// 
+    //TODO: need more work
+    //TODO: need to change behavior after save to DB
     public partial class AddOscarWindow : Window
     {
         int oscarYear = -1;
         public AddOscarWindow()
         {
             InitializeComponent();
-            try
-            {
-                using (var ctx = new dbContext())
-                {
-                    cmbBestActor.ItemsSource = (from a in ctx.Actors
-                                                where a.Gender == 1
-                                                select a).ToList();
-                    cmbBestActress.ItemsSource = (from a in ctx.Actors
-                                                  where a.Gender == 0
-                                                  select a).ToList();
-                    cmbBestDirector.ItemsSource = (from d in ctx.Directors
-                                                   select d).ToList();
-                }
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Data is NOT in the correct format", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (DbUpdateException ex)
-            {
-                if (ex.InnerException.Message.Contains("duplicate key"))
-                {
-                    MessageBox.Show("Your pick already in DB", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
-                    MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            updateComboBoxes();
         }
 
         private void btnBestActor_Click(object sender, RoutedEventArgs e)
         {
             var addActorWindow = new AddActorWindow();
             addActorWindow.ShowDialog();
+            updateComboBoxes();
         }
 
         private void btnBestDirector_Click(object sender, RoutedEventArgs e)
         {
             var addDirectorWindow = new AddDirectorWindow();
             addDirectorWindow.ShowDialog();
+            updateComboBoxes();
         }
 
         private void btnBestMovie_Click(object sender, RoutedEventArgs e)
@@ -135,25 +108,7 @@ namespace ManageMovies
             }
         }
 
-        private bool missData()
-        {
-            return cmbBestActor.SelectedItem == null ||
-                cmbBestActress.SelectedItem == null ||
-                cmbBestDirector.SelectedItem == null ||
-                cmbBestMovie.SelectedItem == null ||
-                string.IsNullOrEmpty(tbYear.Text);
-        }
 
-        private void emptyTextBoxes()
-        {
-            cmbBestActor.SelectedItem = -1;
-            cmbBestActress.SelectedItem = -1;
-            cmbBestDirector.SelectedItem = -1;
-            cmbBestMovie.SelectedItem = -1;
-            tbYear.Text = "";
-            oscarYear = -1;
-            cmbBestMovie.Visibility = Visibility.Hidden;
-        }
 
         private void btnSetYear_Click(object sender, RoutedEventArgs e)
         {
@@ -213,5 +168,63 @@ namespace ManageMovies
                 MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #region helpers
+        public void updateComboBoxes()
+        {
+            try
+            {
+                using (var ctx = new dbContext())
+                {
+                    cmbBestActor.ItemsSource = (from a in ctx.Actors
+                                                where a.Gender == 1
+                                                select a).ToList();
+                    cmbBestActress.ItemsSource = (from a in ctx.Actors
+                                                  where a.Gender == 0
+                                                  select a).ToList();
+                    cmbBestDirector.ItemsSource = (from d in ctx.Directors
+                                                   select d).ToList();
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Data is NOT in the correct format", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (DbUpdateException ex)
+            {
+                if (ex.InnerException.Message.Contains("duplicate key"))
+                {
+                    MessageBox.Show("Your pick already in DB", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ", Iner: " + ex.InnerException.Message + "\n" + "Type: " + ex.GetType().ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool missData()
+        {
+            return cmbBestActor.SelectedItem == null ||
+                cmbBestActress.SelectedItem == null ||
+                cmbBestDirector.SelectedItem == null ||
+                cmbBestMovie.SelectedItem == null ||
+                string.IsNullOrEmpty(tbYear.Text);
+        }
+
+        private void emptyTextBoxes()
+        {
+            cmbBestActor.SelectedItem = -1;
+            cmbBestActress.SelectedItem = -1;
+            cmbBestDirector.SelectedItem = -1;
+            cmbBestMovie.SelectedItem = -1;
+            tbYear.Text = "";
+            oscarYear = -1;
+            cmbBestMovie.Visibility = Visibility.Hidden;
+        }
+        #endregion
     }
 }

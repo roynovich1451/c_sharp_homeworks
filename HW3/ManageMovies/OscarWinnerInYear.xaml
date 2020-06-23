@@ -28,10 +28,10 @@
         </Grid.Resources>
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <Label Content="Movie winner for year" HorizontalAlignment="Center"/>
-            <TextBox Name="tbYear" Margin="100,20"/>
+            <ComboBox Name="cmbYear" Margin="90,20"/>
             <Button Name="btnSearch" Content="Search" Margin="80,10" Click="btnSearch_Click"/>
         </StackPanel>
-        <GroupBox Header="Search results" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="2">
+        <GroupBox  Name="gbName" Header="Search results" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="2">
             <TextBlock Name="tbSearchResult" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
         </GroupBox>
     </Grid>

@@ -32,7 +32,7 @@
 
             <MenuItem Header="_Show">
                 <MenuItem Header="Movie by year" Name="MI_Movie_by_year" Click="MI_Movie_by_year_Click"/>
-                <MenuItem Header="Actors shared movie" Name="MI_Actors_shared_movie" Click="MI_Actors_shared_movie_Click"/>
+                <MenuItem Header="Actors collaboration" Name="MI_Actors_shared_movie" Click="MI_Actors_shared_movie_Click"/>
                 <MenuItem Header="Oscar winner by year" Name="MI_Oscar_winner" Click="MI_Oscar_winner_Click"/>
                 <MenuItem Header="Movie datails" Name="MI_Movie_datails" Click="MI_Movie_datails_Click"/>
             </MenuItem>

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Linq;
+using System.Net;
 
 namespace ManageMovies
 {
@@ -19,6 +20,7 @@ namespace ManageMovies
     /// </summary>
     public partial class SearchMovieByYearWindow : Window
     {
+        public List<Movie> movieLsit;
         public SearchMovieByYearWindow()
         {
             InitializeComponent();
@@ -41,14 +43,14 @@ namespace ManageMovies
                         int exactYear = int.Parse(tbInYear.Text.Trim());
                         using (var ctx = new dbContext())
                         {
-                            lbSearchResults.ItemsSource = (from m in ctx.Movies
-                                                        where m.Year == exactYear
-                                                        select m).ToList();
+                            movieLsit = (from m in ctx.Movies
+                                         where m.Year == exactYear
+                                         select m).ToList();
                         }
                         break;
                     case 3: //from-to searh
                         int fromYear = int.Parse(tbFromYear.Text.Trim());
-                        int toYear =  int.Parse(tbToYear.Text.Trim());
+                        int toYear = int.Parse(tbToYear.Text.Trim());
                         if (fromYear > toYear)
                         {
                             MessageBox.Show("From year larger then to year!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -56,9 +58,9 @@ namespace ManageMovies
                         }
                         using (var ctx = new dbContext())
                         {
-                            lbSearchResults.ItemsSource = (from m in ctx.Movies
-                                                           where m.Year < toYear && m.Year > fromYear
-                                                           select m).ToList();
+                            movieLsit = (from m in ctx.Movies
+                                         where m.Year < toYear && m.Year > fromYear
+                                         select m).ToList();
                         }
                         break;
                     case 4: //search all
@@ -72,12 +74,17 @@ namespace ManageMovies
                         }
                         using (var ctx = new dbContext())
                         {
-                            lbSearchResults.ItemsSource = (from m in ctx.Movies
-                                                           where m.Year < toYear2 && m.Year > fromYear2 || m.Year == exactYear2
-                                                           select m).ToList();
+                            movieLsit = (from m in ctx.Movies
+                                         where m.Year < toYear2 && m.Year > fromYear2 || m.Year == exactYear2
+                                         select m).ToList();
                         }
                         break;
                 }
+                if (movieLsit.Count == 0)
+                {
+                    MessageBox.Show("No movies found for given year", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                lbSearchResults.ItemsSource = movieLsit;
             }
             catch (FormatException ex)
             {

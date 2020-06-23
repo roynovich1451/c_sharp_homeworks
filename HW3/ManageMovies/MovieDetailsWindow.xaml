@@ -1,0 +1,63 @@
+﻿<Window x:Class="ManageMovies.MovieDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManageMovies"
+        mc:Ignorable="d"
+       ResizeMode="NoResize"
+        Title="Movie details" Height="500" Width="450">
+    <Grid Name="WatchMoviveMainGrid" Grid.Row="0" Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="HorizontalAlignment" Value="right"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="10,0"/>
+                </Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="0,15"/>
+                </Style>
+            </Grid.Resources>
+        <ComboBox  Name="cmbMovies" Grid.Row="0" Grid.Column="0" IsEnabled="True" Grid.ColumnSpan="3" Margin="60,30,60,20"/>
+        <Button Name="btnAddMovie" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Margin="10,0,10,14" Click="btnWatch_Click">
+            <TextBlock Text="Watch details" TextWrapping="Wrap"/>
+        </Button>
+        <Label Content="Serial:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="right" Margin="37,0,0,0" />
+        <TextBox Name="tbSerial" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <Label Content="Title:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="right" Margin="37,0,0,0" />
+        <TextBox Name="tbTitle" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <Label Content="Year:" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" IsEnabled="True" HorizontalAlignment="right" Margin="80,0,0,0"/>
+        <TextBox Name="tbYear" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <Label Content="Country:" Grid.Row="6" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
+        <TextBox Name="tbCountry" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <Label Content="IMDB score:" Grid.Row="7" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
+        <TextBox Name="tbIMDB" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <Label Content="Director:" Grid.Row="8" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
+        <TextBox Name="tbDirector" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="True" Margin="0,8,30,8"/>
+        <Label Content="Actors:" Grid.Row="9" Grid.Column="0" HorizontalAlignment="right" Margin="42,0,0,0" />
+        <ListBox Name="lbActors" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,8,30,8"/>
+
+        <GroupBox Header="Pick movie" BorderThickness="2" Grid.ColumnSpan="3" Grid.RowSpan="2">
+        </GroupBox>
+        <GroupBox Header="Movie datails" BorderThickness="2" Grid.ColumnSpan="3" Grid.RowSpan="9" Grid.Row="2">
+        </GroupBox>
+    </Grid>
+</Window>
