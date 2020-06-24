@@ -12,7 +12,7 @@ namespace DBCreation
     public class Actor
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
